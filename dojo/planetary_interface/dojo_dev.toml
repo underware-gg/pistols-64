@@ -1,5 +1,5 @@
 [world]
-name = "Planetary"
+name = "Planetary Interface"
 description = "Planetary: connecting worlds"
 icon_uri = "https://raw.githubusercontent.com/underware-gg/pistols-64/main/images/planetary-icon.png"
 cover_uri = "https://raw.githubusercontent.com/underware-gg/pistols-64/main/images/planetary-cover.jpg"

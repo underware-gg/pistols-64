@@ -1,7 +1,7 @@
 use starknet::{ContractAddress, ClassHash, contract_address_const};
 use dojo::world::{IWorldDispatcher, IWorldDispatcherTrait, Resource};
 
-use planetary::utils::systems::{get_world_contract_address};
+use planetary_interface::utils::systems::{get_world_contract_address};
 
 #[starknet::interface]
 trait IPistols64Actions<TState> {

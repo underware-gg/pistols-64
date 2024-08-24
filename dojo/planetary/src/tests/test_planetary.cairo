@@ -10,7 +10,7 @@ use planetary::systems::actions::{
 use planetary::models::planet::{
     planet, Planet, PlanetStore,
 };
-use planetary::interfaces::pistols64::{
+use planetary_interface::interfaces::pistols64::{
     IPistols64ActionsDispatcher,
     Pistols64Interface, Pistols64InterfaceTrait,
 };

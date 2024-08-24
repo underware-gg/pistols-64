@@ -1,8 +1,15 @@
 use starknet::{ContractAddress, ClassHash, contract_address_const};
 use dojo::world::{IWorldDispatcher, IWorldDispatcherTrait, Resource};
 
-use planetary::systems::actions::{IPlanetaryActionsDispatcher, IPlanetaryActionsDispatcherTrait};
-use planetary::utils::systems::{get_world_contract_address};
+use planetary_interface::utils::systems::{get_world_contract_address};
+
+#[starknet::interface]
+trait IPlanetaryActions<TState> {
+    fn register(ref self: TState, name: felt252, world_address: ContractAddress);
+    fn unregister(ref self: TState, name: felt252);
+    fn get_world_address(ref self: TState, name: felt252) -> ContractAddress;
+}
+
 
 #[generate_trait]
 impl PlanetaryInterfaceImpl of PlanetaryInterfaceTrait {

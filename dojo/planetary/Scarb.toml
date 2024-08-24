@@ -8,6 +8,7 @@ sierra-replace-ids = true
 
 [dependencies]
 dojo = { git = "https://github.com/dojoengine/dojo", tag = "v1.0.0-alpha.7" }
+planetary_interface = { path = "../planetary_interface" }
 
 [[target.dojo]]
 build-external-contracts = []

@@ -19,8 +19,7 @@ mod planetary_component {
         IWorldProvider, IWorldProviderDispatcher,
     };
 
-    use planetary::models::planet::{Planet, PlanetTrait};
-    use planetary::utils::misc::{WORLD};
+    use planetary_interface::utils::misc::{WORLD};
 
     // Storage
 

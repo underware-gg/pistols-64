@@ -13,11 +13,10 @@ mod actions {
     use core::traits::Into;
     use starknet::{ContractAddress, get_contract_address, get_caller_address, get_tx_info};
     
-    use planetary::interfaces::planetary::{
+    use planetary_interface::interfaces::planetary::{
         IPlanetaryActionsDispatcher, IPlanetaryActionsDispatcherTrait,
         PlanetaryInterfaceTrait,
     };
-    use planetary::utils::misc::{WORLD};
 
     #[abi(embed_v0)]
     impl IPistols64Impl of IPistols64<ContractState> {
