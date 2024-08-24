@@ -7,7 +7,7 @@ use dojo::world::IWorldDispatcher;
 // }
 
 #[dojo::contract]
-mod component_mock {
+mod mock_component {
     use planetary::components::planetary::{planetary_component};
 
     component!(path: planetary_component, storage: planetary, event: PlaneraryEvent);

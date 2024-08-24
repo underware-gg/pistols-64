@@ -4,8 +4,8 @@ use starknet::ContractAddress;
 #[dojo::model]
 pub struct Planet {
     #[key]
-    pub namespace: felt252,
-    pub address: ContractAddress,
+    pub name: felt252,
+    pub world_address: ContractAddress,
     pub is_available: bool,
 }
 

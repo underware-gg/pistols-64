@@ -3,8 +3,6 @@ use starknet::ContractAddress;
 #[starknet::interface]
 trait IPlanetary<TState> {
     fn ping(self: @TState) -> felt252;
-    // fn register(self: @ComponentState<TContractState>, world: IWorldDispatcher)
-    // fn unregister(self: @ComponentState<TContractState>, world: IWorldDispatcher);
     // fn get(self: @ComponentState<TContractState>, world: IWorldDispatcher);
 }
 
@@ -22,7 +20,7 @@ mod planetary_component {
     };
 
     use planetary::models::planet::{Planet, PlanetTrait};
-    use planetary::utils::{WORLD};
+    use planetary::utils::misc::{WORLD};
 
     // Storage
 
@@ -45,13 +43,6 @@ mod planetary_component {
         fn ping(self: @ComponentState<TContractState>) -> felt252 {
             'pong'
         }
-
-        // fn register(self: @ComponentState<TContractState>, world: IWorldDispatcher) {
-        //     WORLD(world);
-        // }
-
-        // fn unregister(self: @ComponentState<TContractState>, world: IWorldDispatcher) {
-        // }
 
         // fn get(self: @ComponentState<TContractState>, world: IWorldDispatcher) {
         // }
