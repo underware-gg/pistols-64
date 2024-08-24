@@ -1,0 +1,4 @@
+tag = "pistols64-actions"
+writes = [
+  "pistols64-Challenge",
+]

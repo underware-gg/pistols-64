@@ -1,0 +1,21 @@
+[package]
+name = "pistols64"
+version = "0.1.0"
+cairo-version = "2.7.0"
+
+[cairo]
+sierra-replace-ids = true
+
+[dependencies]
+dojo = { git = "https://github.com/dojoengine/dojo", tag = "v1.0.0-alpha.7" }
+# planetary = { git = "https://github.com/underware-gg/pistols-64", branch = "main" }
+planetary_interface = { path = "../planetary_interface" }
+
+[[target.dojo]]
+build-external-contracts = []
+
+#--------------------------
+# Dojo profiles declaration
+#
+[profile.dev]
+[profile.slot]
