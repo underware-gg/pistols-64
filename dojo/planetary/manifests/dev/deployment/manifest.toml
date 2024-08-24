@@ -1,0 +1,62 @@
+[world]
+kind = "WorldContract"
+class_hash = "0x3715f072aa1c07be724249fcda8b0322687f6c5c585eebc4402d162649c707c"
+original_class_hash = "0x3715f072aa1c07be724249fcda8b0322687f6c5c585eebc4402d162649c707c"
+abi = "manifests/dev/deployment/abis/dojo-world.json"
+address = "0x783e2bc93ef51a73a6af04907e765f83e20c68e58a2b55b4f0c4a397c51b5b5"
+transaction_hash = "0xb3b0687b7223d564750425355a11df86bdabe59599583669a908a5d988b024"
+block_number = 3
+seed = "planetary"
+manifest_name = "dojo-world"
+
+[world.metadata]
+profile_name = "dev"
+rpc_url = "http://localhost:5050/"
+
+[base]
+kind = "Class"
+class_hash = "0x2427dd10a58850ac9a5ca6ce04b7771b05330fd18f2e481831ad903b969e6b2"
+original_class_hash = "0x2427dd10a58850ac9a5ca6ce04b7771b05330fd18f2e481831ad903b969e6b2"
+abi = "manifests/dev/deployment/abis/dojo-base.json"
+tag = "dojo-base"
+manifest_name = "dojo-base"
+
+[[contracts]]
+kind = "DojoContract"
+address = "0x763ba92739cfc1a31b66a935e44703fc3e9fb2530c7f92173d0cc35a30b164a"
+class_hash = "0xc0d2fa0937cfbced755e5e242f62c6ff383c5fe23bfb489b6c1946a7afc911"
+original_class_hash = "0xc0d2fa0937cfbced755e5e242f62c6ff383c5fe23bfb489b6c1946a7afc911"
+base_class_hash = "0x2427dd10a58850ac9a5ca6ce04b7771b05330fd18f2e481831ad903b969e6b2"
+abi = "manifests/dev/deployment/abis/contracts/planetary-planetary_actions-3d857935.json"
+reads = []
+writes = ["planetary-Planet"]
+init_calldata = []
+tag = "planetary-planetary_actions"
+systems = [
+    "register",
+    "unregister",
+]
+manifest_name = "planetary-planetary_actions-3d857935"
+
+[[models]]
+kind = "DojoModel"
+class_hash = "0x1a1f3caf725b56b1d7ac1abab41a86b93c63d989d7cf7744bc2f80d45a93eda"
+original_class_hash = "0x1a1f3caf725b56b1d7ac1abab41a86b93c63d989d7cf7744bc2f80d45a93eda"
+abi = "manifests/dev/deployment/abis/models/planetary-Planet-1feffb25.json"
+tag = "planetary-Planet"
+manifest_name = "planetary-Planet-1feffb25"
+
+[[models.members]]
+name = "name"
+type = "felt252"
+key = true
+
+[[models.members]]
+name = "world_address"
+type = "ContractAddress"
+key = false
+
+[[models.members]]
+name = "is_available"
+type = "bool"
+key = false

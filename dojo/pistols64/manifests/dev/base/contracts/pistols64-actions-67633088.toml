@@ -1,0 +1,16 @@
+kind = "DojoContract"
+class_hash = "0x6d378d2660764d7c13d1dd5e0f5bc619f7f053893602b1f1e6edb6337ec2d16"
+original_class_hash = "0x6d378d2660764d7c13d1dd5e0f5bc619f7f053893602b1f1e6edb6337ec2d16"
+base_class_hash = "0x0"
+abi = "manifests/dev/base/abis/contracts/pistols64-actions-67633088.json"
+reads = []
+writes = []
+init_calldata = []
+tag = "pistols64-actions"
+systems = [
+    "create_challenge",
+    "reply_challenge",
+    "commit",
+    "reveal",
+]
+manifest_name = "pistols64-actions-67633088"

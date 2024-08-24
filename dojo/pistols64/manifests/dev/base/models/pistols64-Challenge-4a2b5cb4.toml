@@ -1,0 +1,21 @@
+kind = "DojoModel"
+class_hash = "0x7ff829ad4f14dd31abf87e6c741bdf49388ab1fd595cd7e2c02243c249f1e8f"
+original_class_hash = "0x7ff829ad4f14dd31abf87e6c741bdf49388ab1fd595cd7e2c02243c249f1e8f"
+abi = "manifests/dev/base/abis/models/pistols64-Challenge-4a2b5cb4.json"
+tag = "pistols64-Challenge"
+manifest_name = "pistols64-Challenge-4a2b5cb4"
+
+[[members]]
+name = "namespace"
+type = "felt252"
+key = true
+
+[[members]]
+name = "address"
+type = "ContractAddress"
+key = false
+
+[[members]]
+name = "is_available"
+type = "bool"
+key = false

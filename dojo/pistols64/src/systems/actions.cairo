@@ -14,7 +14,7 @@ mod actions {
     use super::IActions;
 
     use pistols64::models::challenge::{Challenge};
-    use planetary::interfaces::planetary::{
+    use planetary_interface::interfaces::planetary::{
         IPlanetaryActionsDispatcher, IPlanetaryActionsDispatcherTrait,
         PlanetaryInterfaceTrait,
     };

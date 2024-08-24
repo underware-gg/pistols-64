@@ -1,0 +1,64 @@
+[world]
+kind = "WorldContract"
+class_hash = "0x3715f072aa1c07be724249fcda8b0322687f6c5c585eebc4402d162649c707c"
+original_class_hash = "0x3715f072aa1c07be724249fcda8b0322687f6c5c585eebc4402d162649c707c"
+abi = "manifests/dev/deployment/abis/dojo-world.json"
+address = "0x3c9c179c6e6ee6aeaab40a3cff7f3a9e1365a117b446f2b752dbd7ff04d1532"
+transaction_hash = "0x31c44f8c342ddfa5f4d222a749b9c5cb76ed7166311ae2c156df776b1fad4e"
+block_number = 12
+seed = "pistols64"
+manifest_name = "dojo-world"
+
+[world.metadata]
+profile_name = "dev"
+rpc_url = "http://localhost:5050/"
+
+[base]
+kind = "Class"
+class_hash = "0x2427dd10a58850ac9a5ca6ce04b7771b05330fd18f2e481831ad903b969e6b2"
+original_class_hash = "0x2427dd10a58850ac9a5ca6ce04b7771b05330fd18f2e481831ad903b969e6b2"
+abi = "manifests/dev/deployment/abis/dojo-base.json"
+tag = "dojo-base"
+manifest_name = "dojo-base"
+
+[[contracts]]
+kind = "DojoContract"
+address = "0x622a50fbe77f3fd7985cdadae4d007811e8258337f98203cfd7abd7a8f919ce"
+class_hash = "0x6d378d2660764d7c13d1dd5e0f5bc619f7f053893602b1f1e6edb6337ec2d16"
+original_class_hash = "0x6d378d2660764d7c13d1dd5e0f5bc619f7f053893602b1f1e6edb6337ec2d16"
+base_class_hash = "0x2427dd10a58850ac9a5ca6ce04b7771b05330fd18f2e481831ad903b969e6b2"
+abi = "manifests/dev/deployment/abis/contracts/pistols64-actions-67633088.json"
+reads = []
+writes = ["pistols64-Challenge"]
+init_calldata = []
+tag = "pistols64-actions"
+systems = [
+    "create_challenge",
+    "reply_challenge",
+    "commit",
+    "reveal",
+]
+manifest_name = "pistols64-actions-67633088"
+
+[[models]]
+kind = "DojoModel"
+class_hash = "0x7ff829ad4f14dd31abf87e6c741bdf49388ab1fd595cd7e2c02243c249f1e8f"
+original_class_hash = "0x7ff829ad4f14dd31abf87e6c741bdf49388ab1fd595cd7e2c02243c249f1e8f"
+abi = "manifests/dev/deployment/abis/models/pistols64-Challenge-4a2b5cb4.json"
+tag = "pistols64-Challenge"
+manifest_name = "pistols64-Challenge-4a2b5cb4"
+
+[[models.members]]
+name = "namespace"
+type = "felt252"
+key = true
+
+[[models.members]]
+name = "address"
+type = "ContractAddress"
+key = false
+
+[[models.members]]
+name = "is_available"
+type = "bool"
+key = false
