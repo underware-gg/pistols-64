@@ -28,7 +28,7 @@ impl Pistols64InterfaceImpl of Pistols64InterfaceTrait {
 
     fn new() -> Pistols64Interface {
         let planetary: PlanetaryInterface = PlanetaryInterfaceTrait::new();
-        let world_address: ContractAddress = planetary.planetary_dispatcher().get_world_address(Self::NAMESPACE);
+        let world_address: ContractAddress = planetary.dispatcher().get_world_address(Self::NAMESPACE);
         (Pistols64Interface{
             world: IWorldDispatcher{contract_address: world_address}
         })
@@ -36,7 +36,7 @@ impl Pistols64InterfaceImpl of Pistols64InterfaceTrait {
 
     //
     // dispatchers
-    fn actions_dispatcher(self: Pistols64Interface) -> IPistols64ActionsDispatcher {
+    fn dispatcher(self: Pistols64Interface) -> IPistols64ActionsDispatcher {
         (IPistols64ActionsDispatcher{
             contract_address: get_world_contract_address(self.world, Self::ACTIONS_SELECTOR)
         })

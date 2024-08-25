@@ -27,7 +27,7 @@ impl VulcanInterfaceImpl of VulcanInterfaceTrait {
     // uses default hard-coded address
     fn new() -> VulcanInterface {
         let planetary: PlanetaryInterface = PlanetaryInterfaceTrait::new();
-        let world_address: ContractAddress = planetary.planetary_dispatcher().get_world_address(Self::NAMESPACE);
+        let world_address: ContractAddress = planetary.dispatcher().get_world_address(Self::NAMESPACE);
         (VulcanInterface{
             world: IWorldDispatcher{contract_address: world_address}
         })
@@ -36,7 +36,7 @@ impl VulcanInterfaceImpl of VulcanInterfaceTrait {
     // use custom planetary world address for testing
     fn new_custom(planetary_world_address: ContractAddress) -> VulcanInterface {
         let planetary: PlanetaryInterface = PlanetaryInterfaceTrait::new_custom(planetary_world_address);
-        let world_address: ContractAddress = planetary.planetary_dispatcher().get_world_address(Self::NAMESPACE);
+        let world_address: ContractAddress = planetary.dispatcher().get_world_address(Self::NAMESPACE);
         (VulcanInterface{
             world: IWorldDispatcher{contract_address: world_address}
         })
@@ -44,7 +44,7 @@ impl VulcanInterfaceImpl of VulcanInterfaceTrait {
 
     //
     // dispatchers
-    fn salute_dispatcher(self: VulcanInterface) -> IVulcanSaluteDispatcher {
+    fn dispatcher(self: VulcanInterface) -> IVulcanSaluteDispatcher {
         (IVulcanSaluteDispatcher{
             contract_address: get_world_contract_address(self.world, Self::SALUTE_SELECTOR)
         })

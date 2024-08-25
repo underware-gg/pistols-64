@@ -24,7 +24,7 @@ mod salute {
 
     fn dojo_init(ref world: IWorldDispatcher) {
         let planetary: PlanetaryInterface = PlanetaryInterfaceTrait::new();
-        planetary.planetary_dispatcher().register(VulcanInterfaceTrait::NAMESPACE, world.contract_address);
+        planetary.dispatcher().register(VulcanInterfaceTrait::NAMESPACE, world.contract_address);
     }
 
     #[abi(embed_v0)]
@@ -33,7 +33,7 @@ mod salute {
         // custom init for testing only
         fn init(world: @IWorldDispatcher, planetary_world_address: ContractAddress) {
             let planetary: PlanetaryInterface = PlanetaryInterfaceTrait::new_custom(planetary_world_address);
-            planetary.planetary_dispatcher().register(VulcanInterfaceTrait::NAMESPACE, world.contract_address);
+            planetary.dispatcher().register(VulcanInterfaceTrait::NAMESPACE, world.contract_address);
         }
 
         // salute

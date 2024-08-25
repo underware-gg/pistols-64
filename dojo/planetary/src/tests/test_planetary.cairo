@@ -61,7 +61,7 @@ fn test_get_planet() {
     let (world, _actions, vulcan) = tester::setup_world(flags::MOCK_PISTOLS64);
     // get deployed mock
     let vulcan_interface: VulcanInterface = VulcanInterfaceTrait::new_custom(world.contract_address);
-    let vulcan_dispatcher: IVulcanSaluteDispatcher = vulcan_interface.salute_dispatcher();
+    let vulcan_dispatcher: IVulcanSaluteDispatcher = vulcan_interface.dispatcher();
     assert(vulcan_dispatcher.contract_address == vulcan.contract_address, 'contract_address');
     assert(vulcan_dispatcher.live_long() == 'and_prosper', 'live_long');
 }

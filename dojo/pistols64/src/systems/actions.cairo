@@ -32,7 +32,7 @@ mod actions {
 
     fn dojo_init(ref world: IWorldDispatcher) {
         let planetary: PlanetaryInterface = PlanetaryInterfaceTrait::new();
-        planetary.planetary_dispatcher().register(Pistols64InterfaceTrait::NAMESPACE, world.contract_address);
+        planetary.dispatcher().register(Pistols64InterfaceTrait::NAMESPACE, world.contract_address);
     }
 
 
@@ -58,7 +58,7 @@ mod actions {
         // sozo call pistols64-actions live_long
         fn live_long(world: @IWorldDispatcher) -> felt252 {
             WORLD(world);
-            let vulcan: IVulcanSaluteDispatcher = VulcanInterfaceTrait::new().salute_dispatcher();
+            let vulcan: IVulcanSaluteDispatcher = VulcanInterfaceTrait::new().dispatcher();
             (vulcan.live_long())
         }
     }
