@@ -5,7 +5,7 @@ icon_uri = "https://pistols.underware.gg/images/logo.png"
 cover_uri = "https://pistols.underware.gg/images/splash.png"
 website = "https://github.com/underware-gg/pistols-64"
 
-seed = "pistols64"
+seed = "pistols64-1"
 
 [world.socials]
 x = "https://x.com/underware_gg"
@@ -20,4 +20,4 @@ default = "pistols64"
 rpc_url = "http://localhost:5050"
 account_address = "0xb3ff441a68610b30fd5e2abbf3a1548eb6ba6f3559f2862bf2dc757e5828ca"
 private_key = "0x2bbf4f9fd0bbb2e60b0316c1fe0b76cf7a4d0198bd493ced9b8df2a3a24d68a"
-world_address = "0x3c9c179c6e6ee6aeaab40a3cff7f3a9e1365a117b446f2b752dbd7ff04d1532"
+world_address = "0x57952d454a1152dce4b3fe13f128377e403b1987d0eab7b93bc8178d3f7e219"

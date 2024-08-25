@@ -1,0 +1,50 @@
+#!/bin/bash
+set -e
+source scripts/setup.sh
+
+echo "------------------------------------------------------------------------------"
+echo "PROJECT: $PROJECT_NAME"
+echo "PROFILE: $PROFILE"
+echo "RPC_URL: $RPC_URL"
+echo "WORLD_ADDRESS: $WORLD_ADDRESS"
+echo ""
+
+if [[
+  -z "$PROJECT_NAME" ||
+  -z "$PROFILE" ||
+  -z "$MANIFEST_FILE_PATH" ||
+  "$WORLD_ADDRESS" != "0x"* ||
+  "$RPC_URL" != "http"*
+]]; then
+  echo "! Missing data 👎"
+  exit 1
+fi
+
+#-----------------
+# build
+#
+echo "------------------------------------------------------------------------------"
+echo ">>> Cleaning..."
+sozo -P $PROFILE clean
+echo ">>> Building..."
+if [[ "$PROFILE" == "dev" ]]; then
+  sozo -P $PROFILE build
+
+else
+  sozo -P $PROFILE build
+fi
+echo "👍"
+
+#-----------------
+# migrate
+#
+echo "------------------------------------------------------------------------------"
+echo ">>> Migrate plan..."
+sozo -P $PROFILE migrate plan --world $WORLD_ADDRESS
+# exit 0
+echo ">>> Migrate apply..."
+sozo -P $PROFILE migrate apply --world $WORLD_ADDRESS
+echo "👍"
+
+#------------------
+echo "--- DONE! 👍"

@@ -1,0 +1,84 @@
+#!/bin/bash
+set -e
+source ../planetary/scripts/setup.sh
+
+echo "------------------------------------------------------------------------------"
+echo "PROJECT: $PROJECT_NAME"
+echo "PROFILE: $PROFILE"
+echo "RPC_URL: $RPC_URL"
+echo "WORLD_ADDRESS: $WORLD_ADDRESS"
+echo "CLIENT_GEN_PATH: $CLIENT_GEN_PATH"
+echo "PROFILE_GEN_PATH: $PROFILE_GEN_PATH"
+echo ""
+
+if [[
+  -z "$PROJECT_NAME" ||
+  -z "$PROFILE" ||
+  -z "$MANIFEST_FILE_PATH" ||
+  "$WORLD_ADDRESS" != "0x"* ||
+  "$RPC_URL" != "http"*
+]]; then
+  echo "! Missing data 👎"
+  exit 1
+fi
+
+#-----------------
+# build
+#
+echo "------------------------------------------------------------------------------"
+echo ">>> Cleaning..."
+sozo -P $PROFILE clean
+echo ">>> Building..."
+if [[ "$PROFILE" == "dev" ]]; then
+  sozo -P $PROFILE build --typescript --bindings-output $CLIENT_GEN_PATH
+else
+  sozo -P $PROFILE build
+fi
+echo "👍"
+
+#-----------------
+# migrate
+#
+echo "------------------------------------------------------------------------------"
+echo ">>> Migrate plan..."
+sozo -P $PROFILE migrate plan --world $WORLD_ADDRESS
+# exit 0
+echo ">>> Migrate apply..."
+sozo -P $PROFILE migrate apply --world $WORLD_ADDRESS
+echo "👍"
+
+#-----------------
+# auth write
+#
+# scripts/default_auth.sh $PROFILE
+
+
+#------------------------
+# copy manifest to client
+#
+echo "------------------------------------------------------------------------------"
+echo ">>> Copying manifest [$MANIFEST_FILE_PATH] to [$PROFILE_GEN_PATH/]"
+mkdir -p $PROFILE_GEN_PATH
+cp $MANIFEST_FILE_PATH $PROFILE_GEN_PATH/
+echo "👍"
+
+#------------------------
+# typescript bindings
+#
+if [[ "$PROFILE" == "dev" ]]; then
+  #
+  # copy to client
+  echo "------------------------------------------------------------------------------"
+  echo ">>> Generate sources..."
+  cd ../../clients/sdk
+  npm run create-components --profile=$PROFILE $RPC_URL $WORLD_ADDRESS
+  echo "👍?"
+  #
+  # list copied files
+  echo "------------------------------------------------------------------------------"
+  du -k $CLIENT_GEN_PATH/* | grep -E 'ts|json'
+fi
+
+
+#------------------
+echo "--- DONE! 👍"

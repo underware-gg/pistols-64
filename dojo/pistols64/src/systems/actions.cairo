@@ -18,12 +18,15 @@ mod actions {
         IPlanetaryActionsDispatcher, IPlanetaryActionsDispatcherTrait,
         PlanetaryInterfaceTrait,
     };
+    use planetary_interface::interfaces::pistols64::{
+        Pistols64InterfaceTrait,
+    };
     
     use planetary_interface::utils::misc::{WORLD};
 
     fn dojo_init(ref world: IWorldDispatcher) {
         let planetary_dispatcher: IPlanetaryActionsDispatcher = PlanetaryInterfaceTrait::actions_dispatcher();
-        planetary_dispatcher.register('pistols64', world.contract_address);
+        planetary_dispatcher.register(Pistols64InterfaceTrait::NAMESPACE, world.contract_address);
     }
 
 

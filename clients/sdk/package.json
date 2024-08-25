@@ -1,0 +1,11 @@
+{
+  "name": "pistols64-sdk",
+  "private": false,
+  "version": "0.1.0",
+  "scripts": {
+    "create-components": "npx @dojoengine/core ./src/manifest/$npm_config_profile/manifest.json ./src/contractComponents.ts"
+  },
+  "devDependencies": {
+    "@dojoengine/core": "v1.0.0-alpha.7"
+  }
+}
