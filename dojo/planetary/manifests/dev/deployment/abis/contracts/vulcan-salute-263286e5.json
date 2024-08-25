@@ -129,11 +129,11 @@
   {
     "type": "impl",
     "name": "IDojoInitImpl",
-    "interface_name": "pistols64::systems::actions::actions::IDojoInit"
+    "interface_name": "planetary_interface::systems::vulcan::salute::IDojoInit"
   },
   {
     "type": "interface",
-    "name": "pistols64::systems::actions::actions::IDojoInit",
+    "name": "planetary_interface::systems::vulcan::salute::IDojoInit",
     "items": [
       {
         "type": "function",
@@ -146,40 +146,24 @@
   },
   {
     "type": "impl",
-    "name": "ActionsImpl",
-    "interface_name": "pistols64::systems::actions::IActions"
+    "name": "IVulcanImpl",
+    "interface_name": "planetary_interface::systems::vulcan::IVulcan"
   },
   {
     "type": "interface",
-    "name": "pistols64::systems::actions::IActions",
+    "name": "planetary_interface::systems::vulcan::IVulcan",
     "items": [
       {
         "type": "function",
-        "name": "create_challenge",
-        "inputs": [],
+        "name": "init",
+        "inputs": [
+          {
+            "name": "planetary_world_address",
+            "type": "core::starknet::contract_address::ContractAddress"
+          }
+        ],
         "outputs": [],
-        "state_mutability": "external"
-      },
-      {
-        "type": "function",
-        "name": "reply_challenge",
-        "inputs": [],
-        "outputs": [],
-        "state_mutability": "external"
-      },
-      {
-        "type": "function",
-        "name": "commit",
-        "inputs": [],
-        "outputs": [],
-        "state_mutability": "external"
-      },
-      {
-        "type": "function",
-        "name": "reveal",
-        "inputs": [],
-        "outputs": [],
-        "state_mutability": "external"
+        "state_mutability": "view"
       },
       {
         "type": "function",
@@ -243,7 +227,7 @@
   },
   {
     "type": "event",
-    "name": "pistols64::systems::actions::actions::Event",
+    "name": "planetary_interface::systems::vulcan::salute::Event",
     "kind": "enum",
     "variants": [
       {

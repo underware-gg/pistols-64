@@ -38,6 +38,20 @@ systems = [
 ]
 manifest_name = "planetary-planetary_actions-3d857935"
 
+[[contracts]]
+kind = "DojoContract"
+address = "0x165befbc519b64aed4c147b14627a3f340c56daa6a95061b99dba0fc61e438f"
+class_hash = "0x49fe7e0e03a16bed6763aa3e20a8b9542baec7803bfab4330082fa1ad55fef4"
+original_class_hash = "0x49fe7e0e03a16bed6763aa3e20a8b9542baec7803bfab4330082fa1ad55fef4"
+base_class_hash = "0x2427dd10a58850ac9a5ca6ce04b7771b05330fd18f2e481831ad903b969e6b2"
+abi = "manifests/dev/deployment/abis/contracts/vulcan-salute-263286e5.json"
+reads = []
+writes = []
+init_calldata = []
+tag = "vulcan-salute"
+systems = ["init"]
+manifest_name = "vulcan-salute-263286e5"
+
 [[models]]
 kind = "DojoModel"
 class_hash = "0x1a1f3caf725b56b1d7ac1abab41a86b93c63d989d7cf7744bc2f80d45a93eda"

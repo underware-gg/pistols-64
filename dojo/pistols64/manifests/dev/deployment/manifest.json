@@ -1231,7 +1231,7 @@
     ],
     "address": "0x57952d454a1152dce4b3fe13f128377e403b1987d0eab7b93bc8178d3f7e219",
     "transaction_hash": "0x1a8352228f9e7edae24345903723c89b8567cf9c4525104137afd8564a9e309",
-    "block_number": 12,
+    "block_number": 13,
     "seed": "pistols64-1",
     "metadata": {
       "profile_name": "dev",
@@ -1251,8 +1251,8 @@
     {
       "kind": "DojoContract",
       "address": "0x3cbe76182dc3c32fdb22240f2d6f4b444624c1b7865ea7951f9ff9d06987b5c",
-      "class_hash": "0x6d378d2660764d7c13d1dd5e0f5bc619f7f053893602b1f1e6edb6337ec2d16",
-      "original_class_hash": "0x6d378d2660764d7c13d1dd5e0f5bc619f7f053893602b1f1e6edb6337ec2d16",
+      "class_hash": "0x3aa48bac5810438a266ea978e7317c3082f6b6a6563bdf3cf49857977bb9dee",
+      "original_class_hash": "0x3aa48bac5810438a266ea978e7317c3082f6b6a6563bdf3cf49857977bb9dee",
       "base_class_hash": "0x2427dd10a58850ac9a5ca6ce04b7771b05330fd18f2e481831ad903b969e6b2",
       "abi": [
         {
@@ -1436,6 +1436,17 @@
               "inputs": [],
               "outputs": [],
               "state_mutability": "external"
+            },
+            {
+              "type": "function",
+              "name": "live_long",
+              "inputs": [],
+              "outputs": [
+                {
+                  "type": "core::felt252"
+                }
+              ],
+              "state_mutability": "view"
             }
           ]
         },
