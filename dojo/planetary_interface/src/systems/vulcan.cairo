@@ -6,9 +6,8 @@ trait IVulcan {
     fn live_long(world: @IWorldDispatcher) -> felt252;
 }
 
-#[dojo::contract]
-// #[namespace("vulcan")] // does not work on tests!
-mod vulcan_salute {
+#[dojo::contract(namespace: "vulcan", nomapping: true)]
+mod salute {
     use super::IVulcan;
     use debug::PrintTrait;
     use core::traits::Into;
@@ -23,17 +22,21 @@ mod vulcan_salute {
     };
     use planetary_interface::utils::misc::{WORLD};
 
-    // fn dojo_init(ref world: IWorldDispatcher, planetary_world_address: ContractAddress) {
-    //     let planetary: PlanetaryInterface = PlanetaryInterfaceTrait::new_custom(planetary_world_address);
-    //     planetary.planetary_dispatcher().register(VulcanInterfaceTrait::NAMESPACE, world.contract_address);
-    // }
+    fn dojo_init(ref world: IWorldDispatcher) {
+        let planetary: PlanetaryInterface = PlanetaryInterfaceTrait::new();
+        planetary.planetary_dispatcher().register(VulcanInterfaceTrait::NAMESPACE, world.contract_address);
+    }
 
     #[abi(embed_v0)]
     impl IVulcanImpl of IVulcan<ContractState> {
+        
+        // custom init for testing only
         fn init(world: @IWorldDispatcher, planetary_world_address: ContractAddress) {
             let planetary: PlanetaryInterface = PlanetaryInterfaceTrait::new_custom(planetary_world_address);
             planetary.planetary_dispatcher().register(VulcanInterfaceTrait::NAMESPACE, world.contract_address);
         }
+
+        // salute
         fn live_long(world: @IWorldDispatcher) -> felt252 {
             WORLD(world);
             ('and_prosper')

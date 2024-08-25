@@ -7,6 +7,8 @@ trait IActions {
     fn reply_challenge(ref world: IWorldDispatcher);
     fn commit(ref world: IWorldDispatcher);
     fn reveal(ref world: IWorldDispatcher);
+
+    fn live_long(world: @IWorldDispatcher) -> felt252;
 }
 
 #[dojo::contract]
@@ -21,7 +23,11 @@ mod actions {
     use planetary_interface::interfaces::pistols64::{
         Pistols64Interface, Pistols64InterfaceTrait,
     };
-    
+    use planetary_interface::interfaces::vulcan::{
+        VulcanInterface, VulcanInterfaceTrait,
+        IVulcanSaluteDispatcher, IVulcanSaluteDispatcherTrait,
+    };
+
     use planetary_interface::utils::misc::{WORLD};
 
     fn dojo_init(ref world: IWorldDispatcher) {
@@ -48,5 +54,12 @@ mod actions {
             WORLD(world);
         }
 
+        // test with sozo:
+        // sozo call pistols64-actions live_long
+        fn live_long(world: @IWorldDispatcher) -> felt252 {
+            WORLD(world);
+            let vulcan: IVulcanSaluteDispatcher = VulcanInterfaceTrait::new().salute_dispatcher();
+            (vulcan.live_long())
+        }
     }
 }

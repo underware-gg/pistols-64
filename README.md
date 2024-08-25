@@ -57,45 +57,70 @@ planetary_interface = { git = "https://github.com/underware-gg/pistols-64", bran
 
 ### To discover a world
 
-TODO
+There's a test planet called **Vulcan** included in the planitary system. When saluted with `live_long()`, it replies `and_prosper`.
 
+Example accessing Vulcan from [pistols64](/dojo/pistols64/src/systems/action.cairo).
+
+```rust
+#[dojo::contract]
+mod actions {
+    use planetary_interface::interfaces::vulcan::{
+        VulcanInterface, VulcanInterfaceTrait,
+        IVulcanSaluteDispatcher, IVulcanSaluteDispatcherTrait,
+    };
+    
+    // ...
+
+    // test with sozo:
+    // sozo call pistols64-actions live_long
+    fn live_long(world: @IWorldDispatcher) -> felt252 {
+        let vulcan: IVulcanSaluteDispatcher = VulcanInterfaceTrait::new().dispatcher();
+        (vulcan.live_long())
+    }
+}
+
+```
 
 
 ### To make your world discoverable
 
-Its interface has to be included in `planetary_interface`.
-Example: [pistols64 interface](/dojo/planetary_interface/src/interfaces/pistols64.cairo)
+The system interface has to be included in `planetary_interface`.
+Example: [vulcan interface](/dojo/planetary_interface/src/interfaces/vulcan.cairo)
 
 Then register it from the system you want to expose:
-Example: [pistols64 system](/dojo/pistols64/src/systems/actions.cairo)
+Example: [vulcan system](/dojo/planetary_interface/systems/vulcan.cairo)
 
 ```rust
+use starknet::{ContractAddress};
+
 #[dojo::interface]
-trait IActions {
-    fn create_challenge(ref world: IWorldDispatcher);
-    fn reply_challenge(ref world: IWorldDispatcher);
-    fn commit(ref world: IWorldDispatcher);
-    fn reveal(ref world: IWorldDispatcher);
+trait IVulcan {
+    fn live_long(world: @IWorldDispatcher) -> felt252;
 }
 
-#[dojo::contract]
-mod actions {
-	// ...
-	
+#[dojo::contract(namespace: "vulcan", nomapping: true)]
+mod salute {
     use planetary_interface::interfaces::planetary::{
+        PlanetaryInterface, PlanetaryInterfaceTrait,
         IPlanetaryActionsDispatcher, IPlanetaryActionsDispatcherTrait,
-        PlanetaryInterfaceTrait,
     };
-    use planetary_interface::interfaces::pistols64::{
-        Pistols64InterfaceTrait,
+    use planetary_interface::interfaces::vulcan::{
+        VulcanInterface, VulcanInterfaceTrait,
     };
+    use planetary_interface::utils::misc::{WORLD};
 
     fn dojo_init(ref world: IWorldDispatcher) {
-        let planetary_dispatcher: IPlanetaryActionsDispatcher = PlanetaryInterfaceTrait::actions_dispatcher();
-        planetary_dispatcher.register(Pistols64InterfaceTrait::NAMESPACE, world.contract_address);
+        let planetary: PlanetaryInterface = PlanetaryInterfaceTrait::new();
+        planetary.dispatcher().register(VulcanInterfaceTrait::NAMESPACE, world.contract_address);
     }
-    
-    // ...
+
+    #[abi(embed_v0)]
+    impl IVulcanImpl of IVulcan<ContractState> {
+        fn live_long(world: @IWorldDispatcher) -> felt252 {
+            WORLD(world);
+            ('and_prosper')
+        }
+    }
 }
 
 ```

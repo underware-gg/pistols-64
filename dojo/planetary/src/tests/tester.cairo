@@ -14,16 +14,17 @@ mod tester {
     use planetary::models::planet::{
         planet, Planet,
     };
-    use planetary::tests::mock_vulcan::{
-        vulcan_salute,
-        IVulcanDispatcher, IVulcanDispatcherTrait,
-    };
     use planetary_interface::interfaces::vulcan::{
         PlanetaryInterface, PlanetaryInterfaceTrait,
     };
     use planetary_interface::interfaces::vulcan::{
         VulcanInterface, VulcanInterfaceTrait,
     };
+    use planetary_interface::systems::vulcan::{
+        salute,
+        IVulcanDispatcher, IVulcanDispatcherTrait,
+    };
+    use planetary_interface::utils::systems::{get_resource_type};
 
     fn ZERO() -> ContractAddress { starknet::contract_address_const::<0x0>() }
     fn OWNER() -> ContractAddress { starknet::contract_address_const::<0x1>() }
@@ -69,7 +70,7 @@ mod tester {
         testing::set_block_timestamp(INITIAL_TIMESTAMP);
 
         // deploy world
-        let world: IWorldDispatcher = spawn_test_world(["planetary"].span(),  models.span());
+        let world: IWorldDispatcher = spawn_test_world(["planetary", "vulcan"].span(),  models.span());
         world.grant_owner(dojo::utils::bytearray_hash(@"planetary"), OWNER());
 
         // deploy systems
@@ -84,9 +85,11 @@ mod tester {
 
         let vulcan = IVulcanDispatcher{ contract_address:
             if (deploy_mock_vulcan) {
-                let address = deploy_system(world, 'vulcan_salute', vulcan_salute::TEST_CLASS_HASH);
-                world.grant_owner(dojo::utils::bytearray_hash(@"planetary"), address);
-                // world.init_contract(selector_from_tag!("planetary-vulcan_salute"), [world.contract_address.into()].span());
+                let address = deploy_system(world, 'salute', salute::TEST_CLASS_HASH);
+                world.grant_owner(dojo::utils::bytearray_hash(@"vulcan"), address);
+                // get_resource_type(world, selector_from_tag!("vulcan-salute")).print();
+                // get_resource_type(world, selector_from_tag!("planetary-salute")).print();
+                // world.init_contract(selector_from_tag!("vulcan-salute"), [world.contract_address.into()].span());
                 (address)
             }
             else {ZERO()}

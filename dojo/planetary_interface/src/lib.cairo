@@ -1,7 +1,3 @@
-mod components {
-    mod planetary;
-}
-
 mod interfaces {
     // public planetary interface
     mod planetary;
@@ -10,9 +6,17 @@ mod interfaces {
     mod vulcan; // test planet
 }
 
+mod systems {
+    mod vulcan;
+}
+
 mod utils {
     mod misc;
     mod systems;
+}
+
+mod components {
+    mod planetary;
 }
 
 #[cfg(test)]

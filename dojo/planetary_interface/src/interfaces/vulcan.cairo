@@ -22,7 +22,7 @@ struct VulcanInterface {
 impl VulcanInterfaceImpl of VulcanInterfaceTrait {
     
     const NAMESPACE: felt252 = 'vulcan';
-    const SALUTE_SELECTOR: felt252 = selector_from_tag!("planetary-vulcan_salute");
+    const SALUTE_SELECTOR: felt252 = selector_from_tag!("vulcan-salute");
 
     // uses default hard-coded address
     fn new() -> VulcanInterface {
