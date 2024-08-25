@@ -10,5 +10,5 @@ mod systems {
 mod tests {
     mod tester;
     mod test_planetary;
-    mod mock_pistols64;
+    mod mock_vulcan;
 }

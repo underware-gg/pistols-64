@@ -10,6 +10,10 @@ trait IPlanetaryActions<TState> {
     fn get_world_address(ref self: TState, name: felt252) -> ContractAddress;
 }
 
+#[derive(Copy, Drop)]
+struct PlanetaryInterface {
+    world: IWorldDispatcher
+}
 
 #[generate_trait]
 impl PlanetaryInterfaceImpl of PlanetaryInterfaceTrait {
@@ -21,13 +25,23 @@ impl PlanetaryInterfaceImpl of PlanetaryInterfaceTrait {
     }
 
     //
-    // dispatchers
-    fn world_dispatcher() -> IWorldDispatcher {
-        (IWorldDispatcher{ contract_address: Self::WORLD_CONTRACT() })
+    // create a new interface
+    fn new() -> PlanetaryInterface {
+        (PlanetaryInterface{ 
+            world: IWorldDispatcher{contract_address: Self::WORLD_CONTRACT()}
+        })
     }
-    fn actions_dispatcher() -> IPlanetaryActionsDispatcher {
+    fn new_custom(world_address: ContractAddress) -> PlanetaryInterface {
+        (PlanetaryInterface{ 
+            world: IWorldDispatcher{contract_address: world_address}
+        })
+    }
+
+    //
+    // dispatchers
+    fn planetary_dispatcher(self: PlanetaryInterface) -> IPlanetaryActionsDispatcher {
         (IPlanetaryActionsDispatcher{
-            contract_address: get_world_contract_address(Self::world_dispatcher(), Self::ACTIONS_SELECTOR)
+            contract_address: get_world_contract_address(self.world, Self::ACTIONS_SELECTOR)
         })
     }
 }

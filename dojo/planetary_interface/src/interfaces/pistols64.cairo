@@ -2,6 +2,10 @@ use starknet::{ContractAddress, ClassHash, contract_address_const};
 use dojo::world::{IWorldDispatcher, IWorldDispatcherTrait, Resource};
 
 use planetary_interface::utils::systems::{get_world_contract_address};
+use planetary_interface::interfaces::planetary::{
+    PlanetaryInterface, PlanetaryInterfaceTrait,
+    IPlanetaryActionsDispatcher, IPlanetaryActionsDispatcherTrait,
+};
 
 #[starknet::interface]
 trait IPistols64Actions<TState> {
@@ -22,8 +26,10 @@ impl Pistols64InterfaceImpl of Pistols64InterfaceTrait {
     const NAMESPACE: felt252 = 'pistols64';
     const ACTIONS_SELECTOR: felt252 = selector_from_tag!("pistols64-actions");
 
-    fn new(world_address: ContractAddress) -> Pistols64Interface {
-        (Pistols64Interface{ 
+    fn new() -> Pistols64Interface {
+        let planetary: PlanetaryInterface = PlanetaryInterfaceTrait::new();
+        let world_address: ContractAddress = planetary.planetary_dispatcher().get_world_address(Self::NAMESPACE);
+        (Pistols64Interface{
             world: IWorldDispatcher{contract_address: world_address}
         })
     }

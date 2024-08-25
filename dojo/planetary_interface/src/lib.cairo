@@ -3,8 +3,11 @@ mod components {
 }
 
 mod interfaces {
-    mod pistols64;
+    // public planetary interface
     mod planetary;
+    // public planets
+    mod pistols64;
+    mod vulcan; // test planet
 }
 
 mod utils {

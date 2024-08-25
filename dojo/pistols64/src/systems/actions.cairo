@@ -15,18 +15,18 @@ mod actions {
 
     use pistols64::models::challenge::{Challenge};
     use planetary_interface::interfaces::planetary::{
-        IPlanetaryActionsDispatcher, IPlanetaryActionsDispatcherTrait,
-        PlanetaryInterfaceTrait,
+        PlanetaryInterface, PlanetaryInterfaceTrait,
+        IPlanetaryActionsDispatcherTrait,
     };
     use planetary_interface::interfaces::pistols64::{
-        Pistols64InterfaceTrait,
+        Pistols64Interface, Pistols64InterfaceTrait,
     };
     
     use planetary_interface::utils::misc::{WORLD};
 
     fn dojo_init(ref world: IWorldDispatcher) {
-        let planetary_dispatcher: IPlanetaryActionsDispatcher = PlanetaryInterfaceTrait::actions_dispatcher();
-        planetary_dispatcher.register(Pistols64InterfaceTrait::NAMESPACE, world.contract_address);
+        let planetary: PlanetaryInterface = PlanetaryInterfaceTrait::new();
+        planetary.planetary_dispatcher().register(Pistols64InterfaceTrait::NAMESPACE, world.contract_address);
     }
 
 

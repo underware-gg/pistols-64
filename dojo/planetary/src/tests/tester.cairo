@@ -14,9 +14,15 @@ mod tester {
     use planetary::models::planet::{
         planet, Planet,
     };
-    use planetary::tests::mock_pistols64::{
-        actions as mock_pistols64_actions,
-        IPistols64Dispatcher, IPistols64DispatcherTrait
+    use planetary::tests::mock_vulcan::{
+        vulcan_salute,
+        IVulcanDispatcher, IVulcanDispatcherTrait,
+    };
+    use planetary_interface::interfaces::vulcan::{
+        PlanetaryInterface, PlanetaryInterfaceTrait,
+    };
+    use planetary_interface::interfaces::vulcan::{
+        VulcanInterface, VulcanInterfaceTrait,
     };
 
     fn ZERO() -> ContractAddress { starknet::contract_address_const::<0x0>() }
@@ -50,9 +56,9 @@ mod tester {
     fn setup_world(flags: u8) -> (
         IWorldDispatcher,
         IPlanetaryActionsDispatcher,
-        IPistols64Dispatcher,
+        IVulcanDispatcher,
     ) {
-        let mut deploy_mock_pistols64: bool = (flags & flags::MOCK_PISTOLS64) != 0;
+        let mut deploy_mock_vulcan: bool = (flags & flags::MOCK_PISTOLS64) != 0;
 
         let mut models = array![
             planet::TEST_CLASS_HASH,
@@ -65,31 +71,33 @@ mod tester {
         // deploy world
         let world: IWorldDispatcher = spawn_test_world(["planetary"].span(),  models.span());
         world.grant_owner(dojo::utils::bytearray_hash(@"planetary"), OWNER());
-world.contract_address.print();
 
         // deploy systems
         let actions = IPlanetaryActionsDispatcher{ contract_address:
             {
                 let address = deploy_system(world, 'actions', planetary_actions::TEST_CLASS_HASH);
                 world.grant_owner(dojo::utils::bytearray_hash(@"planetary"), address);
+                // world.init_contract(PlanetaryInterfaceTrait::ACTIONS_SELECTOR, [].span());
                 (address)
             }
         };
 
-        let pistols64 = IPistols64Dispatcher{ contract_address:
-            if (deploy_mock_pistols64) {
-                let address = deploy_system(world, 'pistols64', mock_pistols64_actions::TEST_CLASS_HASH);
+        let vulcan = IVulcanDispatcher{ contract_address:
+            if (deploy_mock_vulcan) {
+                let address = deploy_system(world, 'vulcan_salute', vulcan_salute::TEST_CLASS_HASH);
+                world.grant_owner(dojo::utils::bytearray_hash(@"planetary"), address);
+                // world.init_contract(selector_from_tag!("planetary-vulcan_salute"), [world.contract_address.into()].span());
                 (address)
             }
             else {ZERO()}
         };
-        if (pistols64.contract_address.is_non_zero()) {
-            pistols64.init();
+        if (vulcan.contract_address.is_non_zero()) {
+            vulcan.init(world.contract_address);
         }
         
         impersonate(OWNER());
 
-        (world, actions, pistols64)
+        (world, actions, vulcan)
     }
 
     fn elapse_timestamp(delta: u64) -> (u64, u64) {
