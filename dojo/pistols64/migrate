@@ -63,16 +63,20 @@ cp $MANIFEST_FILE_PATH $PROFILE_GEN_PATH/
 echo "👍"
 
 #------------------------
-# typescript bindings
+# run sdk generators
 #
 if [[ "$PROFILE" == "dev" ]]; then
+  cd ../../clients/sdk
   #
-  # copy to client
   echo "------------------------------------------------------------------------------"
   echo ">>> Generate sources..."
-  cd ../../clients/sdk
   npm run create-components --profile=$PROFILE $RPC_URL $WORLD_ADDRESS
-  echo "👍?"
+  echo "👍❔"
+  #
+  echo "------------------------------------------------------------------------------"
+  echo ">>> Download graphql schema..."
+  npm run get-graphql-schema
+  echo "👍❔"
   #
   # list copied files
   echo "------------------------------------------------------------------------------"
