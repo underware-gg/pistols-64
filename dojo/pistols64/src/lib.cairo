@@ -9,6 +9,12 @@ mod models {
 
 mod types {
     mod state;
+    mod cards {
+        mod paces;
+        mod tactics;
+        mod blades;
+        mod env;
+    }
 }
 
 mod utils {

@@ -10,7 +10,7 @@ use planetary_interface::interfaces::planetary::{
 #[starknet::interface]
 trait IPistols64Actions<TState> {
     fn create_challenge(ref self: TState, duelist_name_a: felt252, duelist_name_b: felt252, message: felt252) -> u128;
-    fn move(ref self: TState, duel_id: u128, round_number: u8, duelist_name: felt252, moves: Span<felt252>);
+    fn move(ref self: TState, duel_id: u128, round_number: u8, duelist_name: felt252, moves: Span<u8>);
 }
 
 #[derive(Copy, Drop)]

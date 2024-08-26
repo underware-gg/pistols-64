@@ -4,7 +4,7 @@ use dojo::world::IWorldDispatcher;
 #[dojo::interface]
 trait IActions {
     fn create_challenge(ref world: IWorldDispatcher, duelist_name_a: felt252, duelist_name_b: felt252, message: felt252) -> u128;
-    fn move(ref world: IWorldDispatcher, duel_id: u128, round_number: u8, duelist_name: felt252, moves: Span<felt252>);
+    fn move(ref world: IWorldDispatcher, duel_id: u128, round_number: u8, duelist_name: felt252, moves: Span<u8>);
 
     // test vulcan interface
     fn live_long(world: @IWorldDispatcher) -> felt252;
@@ -32,7 +32,15 @@ mod actions {
         challenge::{Challenge, ChallengeTrait},
         round::{Round, RoundTrait},
     };
-    use pistols64::types::state::{ChallengeState};
+    use pistols64::types::{
+        state::{ChallengeState},
+    };
+    use pistols64::types::cards::{
+        paces::{PacesCard, PacesCardTrait},
+        tactics::{TacticsCard, TacticsCardTrait},
+        blades::{BladesCard, BladesCardTrait},
+        env::{EnvCard, EnvCardTrait},
+    };
     use pistols64::utils::store::{Store, StoreTrait};
     use pistols64::utils::seeder::{make_seed, felt_to_u128};
     
@@ -70,10 +78,11 @@ mod actions {
             };
             let store: Store = StoreTrait::new(world);
             store.set_challenge(challenge);
+            println!("new challenge: [{}]", duel_id);
             (duel_id)
         }
 
-        fn move(ref world: IWorldDispatcher, duel_id: u128, round_number: u8, duelist_name: felt252, moves: Span<felt252>) {
+        fn move(ref world: IWorldDispatcher, duel_id: u128, round_number: u8, duelist_name: felt252, moves: Span<u8>) {
             // validate challenge
             let store: Store = StoreTrait::new(world);
             let challenge: Challenge = store.get_challenge(duel_id);
