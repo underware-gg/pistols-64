@@ -1230,7 +1230,7 @@
       }
     ],
     "address": "0x783e2bc93ef51a73a6af04907e765f83e20c68e58a2b55b4f0c4a397c51b5b5",
-    "transaction_hash": "0xb3b0687b7223d564750425355a11df86bdabe59599583669a908a5d988b024",
+    "transaction_hash": "0x383b11cdf9f3a3dbe4e5255075aa0aee344fb64e3740c0b6c9aa53dac72f780",
     "block_number": 3,
     "seed": "planetary",
     "metadata": {
@@ -2231,6 +2231,7 @@
         }
       ],
       "tag": "planetary-Planet",
+      "qualified_path": "planetary::models::planet::planet",
       "manifest_name": "planetary-Planet-1feffb25"
     }
   ]

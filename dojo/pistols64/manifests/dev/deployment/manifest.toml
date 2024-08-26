@@ -4,7 +4,7 @@ class_hash = "0x3715f072aa1c07be724249fcda8b0322687f6c5c585eebc4402d162649c707c"
 original_class_hash = "0x3715f072aa1c07be724249fcda8b0322687f6c5c585eebc4402d162649c707c"
 abi = "manifests/dev/deployment/abis/dojo-world.json"
 address = "0x57952d454a1152dce4b3fe13f128377e403b1987d0eab7b93bc8178d3f7e219"
-transaction_hash = "0x1a8352228f9e7edae24345903723c89b8567cf9c4525104137afd8564a9e309"
+transaction_hash = "0xc993d186861cdabe9cade3bd83dadef011ee91a43faf1874a815ea4130accd"
 block_number = 13
 seed = "pistols64-1"
 manifest_name = "dojo-world"
@@ -41,6 +41,7 @@ class_hash = "0x39380a0b122e24f3eb936b3501a2fd7938902ff7be0a01c160b872ee8a81e40"
 original_class_hash = "0x39380a0b122e24f3eb936b3501a2fd7938902ff7be0a01c160b872ee8a81e40"
 abi = "manifests/dev/deployment/abis/models/pistols64-Challenge-4a2b5cb4.json"
 tag = "pistols64-Challenge"
+qualified_path = "pistols64::models::challenge::challenge"
 manifest_name = "pistols64-Challenge-4a2b5cb4"
 
 [[models.members]]
@@ -89,6 +90,7 @@ class_hash = "0x1bea27311f9f7e32323c3ba966b86cf57044cb9bdd85a154aab2ecb88de4d32"
 original_class_hash = "0x1bea27311f9f7e32323c3ba966b86cf57044cb9bdd85a154aab2ecb88de4d32"
 abi = "manifests/dev/deployment/abis/models/pistols64-Round-41ec1aaa.json"
 tag = "pistols64-Round"
+qualified_path = "pistols64::models::round::round"
 manifest_name = "pistols64-Round-41ec1aaa"
 
 [[models.members]]

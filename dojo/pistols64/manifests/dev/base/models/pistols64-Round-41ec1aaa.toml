@@ -3,6 +3,7 @@ class_hash = "0x1bea27311f9f7e32323c3ba966b86cf57044cb9bdd85a154aab2ecb88de4d32"
 original_class_hash = "0x1bea27311f9f7e32323c3ba966b86cf57044cb9bdd85a154aab2ecb88de4d32"
 abi = "manifests/dev/base/abis/models/pistols64-Round-41ec1aaa.json"
 tag = "pistols64-Round"
+qualified_path = "pistols64::models::round::round"
 manifest_name = "pistols64-Round-41ec1aaa"
 
 [[members]]

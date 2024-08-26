@@ -4,7 +4,7 @@ class_hash = "0x3715f072aa1c07be724249fcda8b0322687f6c5c585eebc4402d162649c707c"
 original_class_hash = "0x3715f072aa1c07be724249fcda8b0322687f6c5c585eebc4402d162649c707c"
 abi = "manifests/dev/deployment/abis/dojo-world.json"
 address = "0x783e2bc93ef51a73a6af04907e765f83e20c68e58a2b55b4f0c4a397c51b5b5"
-transaction_hash = "0xb3b0687b7223d564750425355a11df86bdabe59599583669a908a5d988b024"
+transaction_hash = "0x383b11cdf9f3a3dbe4e5255075aa0aee344fb64e3740c0b6c9aa53dac72f780"
 block_number = 3
 seed = "planetary"
 manifest_name = "dojo-world"
@@ -58,6 +58,7 @@ class_hash = "0x1a1f3caf725b56b1d7ac1abab41a86b93c63d989d7cf7744bc2f80d45a93eda"
 original_class_hash = "0x1a1f3caf725b56b1d7ac1abab41a86b93c63d989d7cf7744bc2f80d45a93eda"
 abi = "manifests/dev/deployment/abis/models/planetary-Planet-1feffb25.json"
 tag = "planetary-Planet"
+qualified_path = "planetary::models::planet::planet"
 manifest_name = "planetary-Planet-1feffb25"
 
 [[models.members]]

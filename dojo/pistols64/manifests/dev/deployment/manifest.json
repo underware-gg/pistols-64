@@ -1230,7 +1230,7 @@
       }
     ],
     "address": "0x57952d454a1152dce4b3fe13f128377e403b1987d0eab7b93bc8178d3f7e219",
-    "transaction_hash": "0x1a8352228f9e7edae24345903723c89b8567cf9c4525104137afd8564a9e309",
+    "transaction_hash": "0xc993d186861cdabe9cade3bd83dadef011ee91a43faf1874a815ea4130accd",
     "block_number": 13,
     "seed": "pistols64-1",
     "metadata": {
@@ -2057,6 +2057,7 @@
         }
       ],
       "tag": "pistols64-Challenge",
+      "qualified_path": "pistols64::models::challenge::challenge",
       "manifest_name": "pistols64-Challenge-4a2b5cb4"
     },
     {
@@ -2563,6 +2564,7 @@
         }
       ],
       "tag": "pistols64-Round",
+      "qualified_path": "pistols64::models::round::round",
       "manifest_name": "pistols64-Round-41ec1aaa"
     }
   ]
