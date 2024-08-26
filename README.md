@@ -57,7 +57,7 @@ planetary_interface = { git = "https://github.com/underware-gg/pistols-64", bran
 
 ### To discover a world
 
-There's a test planet called **Vulcan** included in the planitary system. When saluted with `live_long()`, it replies `and_prosper`.
+There's a test planet called **Vulcan** included in the planetary system. When saluted with `live_long()`, it replies `and_prosper`.
 
 Example accessing Vulcan from [pistols64](/dojo/pistols64/src/systems/action.cairo).
 
@@ -88,7 +88,7 @@ The system interface has to be included in `planetary_interface`.
 Example: [vulcan interface](/dojo/planetary_interface/src/interfaces/vulcan.cairo)
 
 Then register it from the system you want to expose:
-Example: [vulcan system](/dojo/planetary_interface/systems/vulcan.cairo)
+Example: [vulcan system](/dojo/planetary_interface/src/systems/vulcan.cairo)
 
 ```rust
 use starknet::{ContractAddress};
