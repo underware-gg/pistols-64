@@ -151,11 +151,11 @@
   },
   {
     "type": "struct",
-    "name": "core::array::Span::<core::felt252>",
+    "name": "core::array::Span::<core::integer::u8>",
     "members": [
       {
         "name": "snapshot",
-        "type": "@core::array::Array::<core::felt252>"
+        "type": "@core::array::Array::<core::integer::u8>"
       }
     ]
   },
@@ -205,7 +205,7 @@
           },
           {
             "name": "moves",
-            "type": "core::array::Span::<core::felt252>"
+            "type": "core::array::Span::<core::integer::u8>"
           }
         ],
         "outputs": [],

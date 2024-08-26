@@ -1251,8 +1251,8 @@
     {
       "kind": "DojoContract",
       "address": "0x3cbe76182dc3c32fdb22240f2d6f4b444624c1b7865ea7951f9ff9d06987b5c",
-      "class_hash": "0x4bb3c568f7832411d975a55be86eccb0fe15ce8a9f9ef42029320125fe8bf6a",
-      "original_class_hash": "0x4bb3c568f7832411d975a55be86eccb0fe15ce8a9f9ef42029320125fe8bf6a",
+      "class_hash": "0x580d460278dfd0d4a81e34076b7566d25646b6fb3298c04564dfa69cdf4120b",
+      "original_class_hash": "0x580d460278dfd0d4a81e34076b7566d25646b6fb3298c04564dfa69cdf4120b",
       "base_class_hash": "0x2427dd10a58850ac9a5ca6ce04b7771b05330fd18f2e481831ad903b969e6b2",
       "abi": [
         {
@@ -1407,11 +1407,11 @@
         },
         {
           "type": "struct",
-          "name": "core::array::Span::<core::felt252>",
+          "name": "core::array::Span::<core::integer::u8>",
           "members": [
             {
               "name": "snapshot",
-              "type": "@core::array::Array::<core::felt252>"
+              "type": "@core::array::Array::<core::integer::u8>"
             }
           ]
         },
@@ -1461,7 +1461,7 @@
                 },
                 {
                   "name": "moves",
-                  "type": "core::array::Span::<core::felt252>"
+                  "type": "core::array::Span::<core::integer::u8>"
                 }
               ],
               "outputs": [],
@@ -1542,7 +1542,8 @@
       ],
       "reads": [],
       "writes": [
-        "pistols64-Challenge"
+        "pistols64-Challenge",
+        "pistols64-Round"
       ],
       "init_calldata": [],
       "tag": "pistols64-actions",
