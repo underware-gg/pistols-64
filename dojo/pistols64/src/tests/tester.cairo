@@ -8,11 +8,12 @@ mod tester {
     use dojo::world::{IWorldDispatcher, IWorldDispatcherTrait};
     use dojo::utils::test::{spawn_test_world, deploy_contract};
 
+use pistols64::utils::store::{Store, StoreTrait};
     use pistols64::systems::actions::{
         actions, IActionsDispatcher, IActionsDispatcherTrait
     };
-    use pistols64::models::challenge::{
-        challenge, Challenge,
+    use pistols64::models::{
+        challenge::{challenge, Challenge},
     };
 
     fn ZERO() -> ContractAddress { starknet::contract_address_const::<0x0>() }
@@ -33,6 +34,13 @@ mod tester {
         const FLAG: u8 = 0b000001;
     }
 
+    #[derive(Copy, Drop)]
+    struct Systems {
+        world: IWorldDispatcher,
+        actions: IActionsDispatcher,
+        store: Store,
+    }
+
     //-------------------------------
     // Test world
 
@@ -42,10 +50,7 @@ mod tester {
         (contract_address)
     }
 
-    fn setup_world(flags: u8) -> (
-        IWorldDispatcher,
-        IActionsDispatcher,
-    ) {
+    fn setup_world(flags: u8) -> Systems {
         let mut models = array![
             challenge::TEST_CLASS_HASH,
         ];
@@ -73,7 +78,13 @@ mod tester {
         
         impersonate(OWNER());
 
-        (world, pistols64)
+        let store: Store = StoreTrait::new(world);
+
+        (Systems{
+            world,
+            actions:pistols64,
+            store,
+        })
     }
 
     fn elapse_timestamp(delta: u64) -> (u64, u64) {
@@ -105,20 +116,10 @@ mod tester {
     //
 
     // ::actions
-    // fn execute_get_world_address(actions: IPlanetaryActionsDispatcher, sender: ContractAddress, name: felt252) -> ContractAddress {
-    //     impersonate(sender);
-    //     let result: ContractAddress = actions.get_world_address(name);
-    //     _next_block();
-    //     (result)
-    // }
-    // fn execute_register(actions: IPlanetaryActionsDispatcher, sender: ContractAddress, name: felt252, world_address: ContractAddress) {
-    //     impersonate(sender);
-    //     actions.register(name, world_address);
-    //     _next_block();
-    // }
-    // fn execute_unregister(actions: IPlanetaryActionsDispatcher, sender: ContractAddress, name: felt252) {
-    //     impersonate(sender);
-    //     actions.unregister(name);
-    //     _next_block();
-    // }
+    fn execute_create_challenge(actions: IActionsDispatcher, sender: ContractAddress, name_a: felt252, name_b: felt252, message: felt252) -> u128 {
+        impersonate(sender);
+        let duel_id: u128 = actions.create_challenge(name_a, name_b, message);
+        _next_block();
+        (duel_id)
+    }
 }

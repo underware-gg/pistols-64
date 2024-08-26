@@ -1,9 +1,19 @@
+mod systems {
+    mod actions;
+}
+
 mod models {
     mod challenge;
 }
 
-mod systems {
-    mod actions;
+mod types {
+    mod state;
+}
+
+mod utils {
+    mod store;
+    mod seeder;
+    mod hash;
 }
 
 #[cfg(test)]

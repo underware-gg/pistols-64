@@ -9,10 +9,8 @@ use planetary_interface::interfaces::planetary::{
 
 #[starknet::interface]
 trait IPistols64Actions<TState> {
-    fn create_challenge(ref self: TState);
-    fn reply_challenge(ref self: TState);
-    fn commit(ref self: TState);
-    fn reveal(ref self: TState);
+    fn create_challenge(ref self: TState, name_a: felt252, name_b: felt252, message: felt252);
+    fn move(ref self: TState, name: felt252, moves: Array<felt252>);
 }
 
 #[derive(Copy, Drop)]
@@ -27,8 +25,7 @@ impl Pistols64InterfaceImpl of Pistols64InterfaceTrait {
     const ACTIONS_SELECTOR: felt252 = selector_from_tag!("pistols64-actions");
 
     fn new() -> Pistols64Interface {
-        let planetary: PlanetaryInterface = PlanetaryInterfaceTrait::new();
-        let world_address: ContractAddress = planetary.dispatcher().get_world_address(Self::NAMESPACE);
+        let world_address: ContractAddress = PlanetaryInterfaceTrait::new().dispatcher().get_world_address(Self::NAMESPACE);
         (Pistols64Interface{
             world: IWorldDispatcher{contract_address: world_address}
         })
