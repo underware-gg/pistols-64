@@ -50,6 +50,16 @@
       },
       {
         "kind": "SCALAR",
+        "name": "Enum",
+        "description": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "SCALAR",
         "name": "Float",
         "description": "The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point).",
         "fields": null,
@@ -90,6 +100,11 @@
           {
             "kind": "OBJECT",
             "name": "pistols64_Challenge",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "pistols64_Round",
             "ofType": null
           }
         ]
@@ -2031,6 +2046,99 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "pistols64RoundModels",
+            "description": null,
+            "args": [
+              {
+                "name": "first",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "last",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "before",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Cursor",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "after",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Cursor",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "offset",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "limit",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "where",
+                "description": null,
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "pistols64_RoundWhereInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "order",
+                "description": null,
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "pistols64_RoundOrder",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "pistols64_RoundConnection",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -3263,16 +3371,6 @@
       },
       {
         "kind": "SCALAR",
-        "name": "bool",
-        "description": null,
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "SCALAR",
         "name": "felt252",
         "description": null,
         "fields": null,
@@ -3287,19 +3385,19 @@
         "description": null,
         "fields": [
           {
-            "name": "namespace",
+            "name": "duel_id",
             "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
-              "name": "felt252",
+              "name": "u128",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "address",
+            "name": "address_a",
             "description": null,
             "args": [],
             "type": {
@@ -3311,12 +3409,72 @@
             "deprecationReason": null
           },
           {
-            "name": "is_available",
+            "name": "address_b",
             "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
-              "name": "bool",
+              "name": "ContractAddress",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "duelist_name_a",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "felt252",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "duelist_name_b",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "felt252",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "message",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "felt252",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "state",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Enum",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "winner",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "u8",
               "ofType": null
             },
             "isDeprecated": false,
@@ -3494,19 +3652,49 @@
         "interfaces": null,
         "enumValues": [
           {
-            "name": "NAMESPACE",
+            "name": "DUEL_ID",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "ADDRESS",
+            "name": "ADDRESS_A",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "IS_AVAILABLE",
+            "name": "ADDRESS_B",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "DUELIST_NAME_A",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "DUELIST_NAME_B",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "MESSAGE",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "STATE",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "WINNER",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -3521,135 +3709,125 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "namespace",
+            "name": "duel_id",
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "felt252",
+              "name": "u128",
               "ofType": null
             },
             "defaultValue": null
           },
           {
-            "name": "namespaceGT",
+            "name": "duel_idGT",
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "felt252",
+              "name": "u128",
               "ofType": null
             },
             "defaultValue": null
           },
           {
-            "name": "namespaceGTE",
+            "name": "duel_idGTE",
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "felt252",
+              "name": "u128",
               "ofType": null
             },
             "defaultValue": null
           },
           {
-            "name": "namespaceLT",
+            "name": "duel_idLT",
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "felt252",
+              "name": "u128",
               "ofType": null
             },
             "defaultValue": null
           },
           {
-            "name": "namespaceLTE",
+            "name": "duel_idLTE",
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "felt252",
+              "name": "u128",
               "ofType": null
             },
             "defaultValue": null
           },
           {
-            "name": "namespaceNEQ",
+            "name": "duel_idNEQ",
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "felt252",
+              "name": "u128",
               "ofType": null
             },
             "defaultValue": null
           },
           {
-            "name": "namespaceEQ",
+            "name": "duel_idEQ",
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "felt252",
+              "name": "u128",
               "ofType": null
             },
             "defaultValue": null
           },
           {
-            "name": "namespaceNOTIN",
+            "name": "duel_idNOTIN",
             "description": null,
             "type": {
               "kind": "LIST",
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "felt252",
+                "name": "u128",
                 "ofType": null
               }
             },
             "defaultValue": null
           },
           {
-            "name": "namespaceIN",
+            "name": "duel_idIN",
             "description": null,
             "type": {
               "kind": "LIST",
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "felt252",
+                "name": "u128",
                 "ofType": null
               }
             },
             "defaultValue": null
           },
           {
-            "name": "namespaceNOTLIKE",
+            "name": "duel_idNOTLIKE",
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "felt252",
+              "name": "u128",
               "ofType": null
             },
             "defaultValue": null
           },
           {
-            "name": "namespaceLIKE",
+            "name": "duel_idLIKE",
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "felt252",
+              "name": "u128",
               "ofType": null
             },
             "defaultValue": null
           },
           {
-            "name": "address",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "ContractAddress",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "addressGT",
+            "name": "address_a",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -3659,7 +3837,7 @@
             "defaultValue": null
           },
           {
-            "name": "addressGTE",
+            "name": "address_aGT",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -3669,7 +3847,7 @@
             "defaultValue": null
           },
           {
-            "name": "addressLT",
+            "name": "address_aGTE",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -3679,7 +3857,7 @@
             "defaultValue": null
           },
           {
-            "name": "addressLTE",
+            "name": "address_aLT",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -3689,7 +3867,7 @@
             "defaultValue": null
           },
           {
-            "name": "addressNEQ",
+            "name": "address_aLTE",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -3699,7 +3877,7 @@
             "defaultValue": null
           },
           {
-            "name": "addressEQ",
+            "name": "address_aNEQ",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -3709,21 +3887,17 @@
             "defaultValue": null
           },
           {
-            "name": "addressNOTIN",
+            "name": "address_aEQ",
             "description": null,
             "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "ContractAddress",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "ContractAddress",
+              "ofType": null
             },
             "defaultValue": null
           },
           {
-            "name": "addressIN",
+            "name": "address_aNOTIN",
             "description": null,
             "type": {
               "kind": "LIST",
@@ -3737,7 +3911,21 @@
             "defaultValue": null
           },
           {
-            "name": "addressNOTLIKE",
+            "name": "address_aIN",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ContractAddress",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "address_aNOTLIKE",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -3747,7 +3935,7 @@
             "defaultValue": null
           },
           {
-            "name": "addressLIKE",
+            "name": "address_aLIKE",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -3757,16 +3945,1323 @@
             "defaultValue": null
           },
           {
-            "name": "is_available",
+            "name": "address_b",
             "description": null,
             "type": {
               "kind": "SCALAR",
-              "name": "bool",
+              "name": "ContractAddress",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "address_bGT",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "ContractAddress",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "address_bGTE",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "ContractAddress",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "address_bLT",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "ContractAddress",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "address_bLTE",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "ContractAddress",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "address_bNEQ",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "ContractAddress",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "address_bEQ",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "ContractAddress",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "address_bNOTIN",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ContractAddress",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "address_bIN",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ContractAddress",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "address_bNOTLIKE",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "ContractAddress",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "address_bLIKE",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "ContractAddress",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "duelist_name_a",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "felt252",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "duelist_name_aGT",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "felt252",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "duelist_name_aGTE",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "felt252",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "duelist_name_aLT",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "felt252",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "duelist_name_aLTE",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "felt252",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "duelist_name_aNEQ",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "felt252",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "duelist_name_aEQ",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "felt252",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "duelist_name_aNOTIN",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "felt252",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "duelist_name_aIN",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "felt252",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "duelist_name_aNOTLIKE",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "felt252",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "duelist_name_aLIKE",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "felt252",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "duelist_name_b",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "felt252",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "duelist_name_bGT",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "felt252",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "duelist_name_bGTE",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "felt252",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "duelist_name_bLT",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "felt252",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "duelist_name_bLTE",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "felt252",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "duelist_name_bNEQ",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "felt252",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "duelist_name_bEQ",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "felt252",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "duelist_name_bNOTIN",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "felt252",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "duelist_name_bIN",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "felt252",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "duelist_name_bNOTLIKE",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "felt252",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "duelist_name_bLIKE",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "felt252",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "message",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "felt252",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "messageGT",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "felt252",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "messageGTE",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "felt252",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "messageLT",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "felt252",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "messageLTE",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "felt252",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "messageNEQ",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "felt252",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "messageEQ",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "felt252",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "messageNOTIN",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "felt252",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "messageIN",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "felt252",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "messageNOTLIKE",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "felt252",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "messageLIKE",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "felt252",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "state",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Enum",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "winner",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "u8",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "winnerGT",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "u8",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "winnerGTE",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "u8",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "winnerLT",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "u8",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "winnerLTE",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "u8",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "winnerNEQ",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "u8",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "winnerEQ",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "u8",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "winnerNOTIN",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "u8",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "winnerIN",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "u8",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "winnerNOTLIKE",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "u8",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "winnerLIKE",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "u8",
               "ofType": null
             },
             "defaultValue": null
           }
         ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "pistols64_Round",
+        "description": null,
+        "fields": [
+          {
+            "name": "duel_id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "u128",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "round_number",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "u8",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "shot_a",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "pistols64_Round_Shot",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "shot_b",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "pistols64_Round_Shot",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "entity",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "World__Entity",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "eventMessage",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "World__EventMessage",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "pistols64_RoundConnection",
+        "description": null,
+        "fields": [
+          {
+            "name": "edges",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "pistols64_RoundEdge",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "totalCount",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "pageInfo",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "World__PageInfo",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "pistols64_RoundEdge",
+        "description": null,
+        "fields": [
+          {
+            "name": "node",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "pistols64_Round",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "cursor",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Cursor",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "pistols64_RoundOrder",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "direction",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "OrderDirection",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "field",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "pistols64_RoundOrderField",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "pistols64_RoundOrderField",
+        "description": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "DUEL_ID",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "ROUND_NUMBER",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "SHOT_A",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "SHOT_B",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "pistols64_RoundWhereInput",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "duel_id",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "u128",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "duel_idGT",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "u128",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "duel_idGTE",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "u128",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "duel_idLT",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "u128",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "duel_idLTE",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "u128",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "duel_idNEQ",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "u128",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "duel_idEQ",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "u128",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "duel_idNOTIN",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "u128",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "duel_idIN",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "u128",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "duel_idNOTLIKE",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "u128",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "duel_idLIKE",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "u128",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "round_number",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "u8",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "round_numberGT",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "u8",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "round_numberGTE",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "u8",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "round_numberLT",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "u8",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "round_numberLTE",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "u8",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "round_numberNEQ",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "u8",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "round_numberEQ",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "u8",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "round_numberNOTIN",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "u8",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "round_numberIN",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "u8",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "round_numberNOTLIKE",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "u8",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "round_numberLIKE",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "u8",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "pistols64_Round_Shot",
+        "description": null,
+        "fields": [
+          {
+            "name": "hash",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "u64",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "salt",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "u64",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "action",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "u16",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "chance_crit",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "u8",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "chance_hit",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "u8",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "chance_lethal",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "u8",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "dice_crit",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "u8",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "dice_hit",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "u8",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "damage",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "u8",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "block",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "u8",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "win",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "u8",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "wager",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "u8",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "health",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "u8",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "honour",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "u8",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "SCALAR",
+        "name": "u128",
+        "description": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "SCALAR",
+        "name": "u16",
+        "description": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "SCALAR",
+        "name": "u64",
+        "description": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "SCALAR",
+        "name": "u8",
+        "description": null,
+        "fields": null,
+        "inputFields": null,
         "interfaces": null,
         "enumValues": null,
         "possibleTypes": null

@@ -363,76 +363,96 @@
   },
   {
     "type": "impl",
-    "name": "challengeImpl",
-    "interface_name": "pistols64::models::challenge::Ichallenge"
+    "name": "roundImpl",
+    "interface_name": "pistols64::models::round::Iround"
   },
   {
-    "type": "enum",
-    "name": "pistols64::types::state::ChallengeState",
-    "variants": [
+    "type": "struct",
+    "name": "pistols64::models::round::Shot",
+    "members": [
       {
-        "name": "Null",
-        "type": "()"
+        "name": "hash",
+        "type": "core::integer::u64"
       },
       {
-        "name": "InProgress",
-        "type": "()"
+        "name": "salt",
+        "type": "core::integer::u64"
       },
       {
-        "name": "Resolved",
-        "type": "()"
+        "name": "action",
+        "type": "core::integer::u16"
       },
       {
-        "name": "Draw",
-        "type": "()"
+        "name": "chance_crit",
+        "type": "core::integer::u8"
       },
       {
-        "name": "Canceled",
-        "type": "()"
+        "name": "chance_hit",
+        "type": "core::integer::u8"
+      },
+      {
+        "name": "chance_lethal",
+        "type": "core::integer::u8"
+      },
+      {
+        "name": "dice_crit",
+        "type": "core::integer::u8"
+      },
+      {
+        "name": "dice_hit",
+        "type": "core::integer::u8"
+      },
+      {
+        "name": "damage",
+        "type": "core::integer::u8"
+      },
+      {
+        "name": "block",
+        "type": "core::integer::u8"
+      },
+      {
+        "name": "win",
+        "type": "core::integer::u8"
+      },
+      {
+        "name": "wager",
+        "type": "core::integer::u8"
+      },
+      {
+        "name": "health",
+        "type": "core::integer::u8"
+      },
+      {
+        "name": "honour",
+        "type": "core::integer::u8"
       }
     ]
   },
   {
     "type": "struct",
-    "name": "pistols64::models::challenge::Challenge",
+    "name": "pistols64::models::round::Round",
     "members": [
       {
         "name": "duel_id",
         "type": "core::integer::u128"
       },
       {
-        "name": "address_a",
-        "type": "core::starknet::contract_address::ContractAddress"
-      },
-      {
-        "name": "address_b",
-        "type": "core::starknet::contract_address::ContractAddress"
-      },
-      {
-        "name": "duelist_name_a",
-        "type": "core::felt252"
-      },
-      {
-        "name": "duelist_name_b",
-        "type": "core::felt252"
-      },
-      {
-        "name": "message",
-        "type": "core::felt252"
-      },
-      {
-        "name": "state",
-        "type": "pistols64::types::state::ChallengeState"
-      },
-      {
-        "name": "winner",
+        "name": "round_number",
         "type": "core::integer::u8"
+      },
+      {
+        "name": "shot_a",
+        "type": "pistols64::models::round::Shot"
+      },
+      {
+        "name": "shot_b",
+        "type": "pistols64::models::round::Shot"
       }
     ]
   },
   {
     "type": "interface",
-    "name": "pistols64::models::challenge::Ichallenge",
+    "name": "pistols64::models::round::Iround",
     "items": [
       {
         "type": "function",
@@ -440,7 +460,7 @@
         "inputs": [
           {
             "name": "model",
-            "type": "pistols64::models::challenge::Challenge"
+            "type": "pistols64::models::round::Round"
           }
         ],
         "outputs": [],
@@ -450,7 +470,7 @@
   },
   {
     "type": "event",
-    "name": "pistols64::models::challenge::challenge::Event",
+    "name": "pistols64::models::round::round::Event",
     "kind": "enum",
     "variants": []
   }

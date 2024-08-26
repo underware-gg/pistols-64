@@ -368,14 +368,26 @@
   },
   {
     "type": "enum",
-    "name": "core::bool",
+    "name": "pistols64::types::state::ChallengeState",
     "variants": [
       {
-        "name": "False",
+        "name": "Null",
         "type": "()"
       },
       {
-        "name": "True",
+        "name": "InProgress",
+        "type": "()"
+      },
+      {
+        "name": "Resolved",
+        "type": "()"
+      },
+      {
+        "name": "Draw",
+        "type": "()"
+      },
+      {
+        "name": "Canceled",
         "type": "()"
       }
     ]
@@ -385,16 +397,36 @@
     "name": "pistols64::models::challenge::Challenge",
     "members": [
       {
-        "name": "namespace",
-        "type": "core::felt252"
+        "name": "duel_id",
+        "type": "core::integer::u128"
       },
       {
-        "name": "address",
+        "name": "address_a",
         "type": "core::starknet::contract_address::ContractAddress"
       },
       {
-        "name": "is_available",
-        "type": "core::bool"
+        "name": "address_b",
+        "type": "core::starknet::contract_address::ContractAddress"
+      },
+      {
+        "name": "duelist_name_a",
+        "type": "core::felt252"
+      },
+      {
+        "name": "duelist_name_b",
+        "type": "core::felt252"
+      },
+      {
+        "name": "message",
+        "type": "core::felt252"
+      },
+      {
+        "name": "state",
+        "type": "pistols64::types::state::ChallengeState"
+      },
+      {
+        "name": "winner",
+        "type": "core::integer::u8"
       }
     ]
   },

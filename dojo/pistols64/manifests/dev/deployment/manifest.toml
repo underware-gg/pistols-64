@@ -24,41 +24,89 @@ manifest_name = "dojo-base"
 [[contracts]]
 kind = "DojoContract"
 address = "0x3cbe76182dc3c32fdb22240f2d6f4b444624c1b7865ea7951f9ff9d06987b5c"
-class_hash = "0x3aa48bac5810438a266ea978e7317c3082f6b6a6563bdf3cf49857977bb9dee"
-original_class_hash = "0x3aa48bac5810438a266ea978e7317c3082f6b6a6563bdf3cf49857977bb9dee"
+class_hash = "0x4bb3c568f7832411d975a55be86eccb0fe15ce8a9f9ef42029320125fe8bf6a"
+original_class_hash = "0x4bb3c568f7832411d975a55be86eccb0fe15ce8a9f9ef42029320125fe8bf6a"
 base_class_hash = "0x2427dd10a58850ac9a5ca6ce04b7771b05330fd18f2e481831ad903b969e6b2"
 abi = "manifests/dev/deployment/abis/contracts/pistols64-actions-67633088.json"
 reads = []
 writes = ["pistols64-Challenge"]
 init_calldata = []
 tag = "pistols64-actions"
-systems = [
-    "create_challenge",
-    "reply_challenge",
-    "commit",
-    "reveal",
-]
+systems = ["move"]
 manifest_name = "pistols64-actions-67633088"
 
 [[models]]
 kind = "DojoModel"
-class_hash = "0x7ff829ad4f14dd31abf87e6c741bdf49388ab1fd595cd7e2c02243c249f1e8f"
-original_class_hash = "0x7ff829ad4f14dd31abf87e6c741bdf49388ab1fd595cd7e2c02243c249f1e8f"
+class_hash = "0x39380a0b122e24f3eb936b3501a2fd7938902ff7be0a01c160b872ee8a81e40"
+original_class_hash = "0x39380a0b122e24f3eb936b3501a2fd7938902ff7be0a01c160b872ee8a81e40"
 abi = "manifests/dev/deployment/abis/models/pistols64-Challenge-4a2b5cb4.json"
 tag = "pistols64-Challenge"
 manifest_name = "pistols64-Challenge-4a2b5cb4"
 
 [[models.members]]
-name = "namespace"
-type = "felt252"
+name = "duel_id"
+type = "u128"
 key = true
 
 [[models.members]]
-name = "address"
+name = "address_a"
 type = "ContractAddress"
 key = false
 
 [[models.members]]
-name = "is_available"
-type = "bool"
+name = "address_b"
+type = "ContractAddress"
+key = false
+
+[[models.members]]
+name = "duelist_name_a"
+type = "felt252"
+key = false
+
+[[models.members]]
+name = "duelist_name_b"
+type = "felt252"
+key = false
+
+[[models.members]]
+name = "message"
+type = "felt252"
+key = false
+
+[[models.members]]
+name = "state"
+type = "ChallengeState"
+key = false
+
+[[models.members]]
+name = "winner"
+type = "u8"
+key = false
+
+[[models]]
+kind = "DojoModel"
+class_hash = "0x1bea27311f9f7e32323c3ba966b86cf57044cb9bdd85a154aab2ecb88de4d32"
+original_class_hash = "0x1bea27311f9f7e32323c3ba966b86cf57044cb9bdd85a154aab2ecb88de4d32"
+abi = "manifests/dev/deployment/abis/models/pistols64-Round-41ec1aaa.json"
+tag = "pistols64-Round"
+manifest_name = "pistols64-Round-41ec1aaa"
+
+[[models.members]]
+name = "duel_id"
+type = "u128"
+key = true
+
+[[models.members]]
+name = "round_number"
+type = "u8"
+key = true
+
+[[models.members]]
+name = "shot_a"
+type = "Shot"
+key = false
+
+[[models.members]]
+name = "shot_b"
+type = "Shot"
 key = false

@@ -150,34 +150,64 @@
     "interface_name": "pistols64::systems::actions::IActions"
   },
   {
+    "type": "struct",
+    "name": "core::array::Span::<core::felt252>",
+    "members": [
+      {
+        "name": "snapshot",
+        "type": "@core::array::Array::<core::felt252>"
+      }
+    ]
+  },
+  {
     "type": "interface",
     "name": "pistols64::systems::actions::IActions",
     "items": [
       {
         "type": "function",
         "name": "create_challenge",
-        "inputs": [],
-        "outputs": [],
+        "inputs": [
+          {
+            "name": "duelist_name_a",
+            "type": "core::felt252"
+          },
+          {
+            "name": "duelist_name_b",
+            "type": "core::felt252"
+          },
+          {
+            "name": "message",
+            "type": "core::felt252"
+          }
+        ],
+        "outputs": [
+          {
+            "type": "core::integer::u128"
+          }
+        ],
         "state_mutability": "external"
       },
       {
         "type": "function",
-        "name": "reply_challenge",
-        "inputs": [],
-        "outputs": [],
-        "state_mutability": "external"
-      },
-      {
-        "type": "function",
-        "name": "commit",
-        "inputs": [],
-        "outputs": [],
-        "state_mutability": "external"
-      },
-      {
-        "type": "function",
-        "name": "reveal",
-        "inputs": [],
+        "name": "move",
+        "inputs": [
+          {
+            "name": "duel_id",
+            "type": "core::integer::u128"
+          },
+          {
+            "name": "round_number",
+            "type": "core::integer::u8"
+          },
+          {
+            "name": "duelist_name",
+            "type": "core::felt252"
+          },
+          {
+            "name": "moves",
+            "type": "core::array::Span::<core::felt252>"
+          }
+        ],
         "outputs": [],
         "state_mutability": "external"
       },
