@@ -14,7 +14,7 @@
     "**/*-lock.json": true,
     "**/*-lock.yaml": true,
     "**/*.lock": true,
-    "**/sdk/*": true,
+    "**/sdk/src/*": true,
     "**/manifests/*": true,
     "**/yarn*.json": true,
     "**/dist": true,

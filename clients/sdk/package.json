@@ -4,7 +4,8 @@
   "version": "0.1.0",
   "scripts": {
     "get-graphql-schema": "npx get-graphql-schema http://0.0.0.0:8080/graphql --json > ./src/graphql/schema.json",
-    "create-components": "npx @dojoengine/core ./src/manifest/$npm_config_profile/manifest.json ./src/contractComponents.ts"
+    "create-components": "npx @dojoengine/core ./src/manifest/$npm_config_profile/manifest.json ./src/generated/contractComponents.ts",
+    "create-constants": "./bin/generateConstants.cjs ../../dojo/pistols64/src ./src/generated/constants.ts"
   },
   "devDependencies": {
     "@dojoengine/core": "v1.0.0-alpha.7",

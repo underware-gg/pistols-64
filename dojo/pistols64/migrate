@@ -70,8 +70,13 @@ if [[ "$PROFILE" == "dev" ]]; then
   cd ../../clients/sdk
   #
   echo "------------------------------------------------------------------------------"
-  echo ">>> Generate sources..."
+  echo ">>> Generate components..."
   npm run create-components --profile=$PROFILE $RPC_URL $WORLD_ADDRESS
+  echo "👍❔"
+  #
+  echo "------------------------------------------------------------------------------"
+  echo ">>> Generate constants..."
+  npm run create-constants
   echo "👍❔"
   #
   echo "------------------------------------------------------------------------------"
