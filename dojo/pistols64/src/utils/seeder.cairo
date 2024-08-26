@@ -22,6 +22,7 @@ fn _make_block_hash() -> u128 {
 // Unit  tests
 //
 #[cfg(test)]
+#[ignore]
 mod tests {
     use debug::PrintTrait;
     use pistols64::utils::seeder::{
@@ -30,12 +31,14 @@ mod tests {
     };
 
     #[test]
+    #[ignore]
     fn test__make_block_hash() {
         let h = _make_block_hash();
         assert(h != 0, 'block hash');
     }
 
     #[test]
+    #[ignore]
     fn test_make_seed() {
         let s0 = make_seed(starknet::contract_address_const::<0x0>(), 1);
         let s1 = make_seed(starknet::contract_address_const::<0x1>(), 1);

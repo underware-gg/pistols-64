@@ -4,6 +4,7 @@ mod systems {
 
 mod models {
     mod challenge;
+    mod round;
 }
 
 mod types {

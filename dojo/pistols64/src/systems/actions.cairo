@@ -3,8 +3,8 @@ use dojo::world::IWorldDispatcher;
 
 #[dojo::interface]
 trait IActions {
-    fn create_challenge(ref world: IWorldDispatcher, name_a: felt252, name_b: felt252, message: felt252) -> u128;
-    fn move(ref world: IWorldDispatcher, name: felt252, moves: Array<felt252>);
+    fn create_challenge(ref world: IWorldDispatcher, duelist_name_a: felt252, duelist_name_b: felt252, message: felt252) -> u128;
+    fn move(ref world: IWorldDispatcher, duel_id: u128, round_number: u8, duelist_name: felt252, moves: Span<felt252>);
 
     // test vulcan interface
     fn live_long(world: @IWorldDispatcher) -> felt252;
@@ -28,10 +28,22 @@ mod actions {
     };
     use planetary_interface::utils::misc::{WORLD};
 
-    use pistols64::models::challenge::{Challenge};
+    use pistols64::models::{
+        challenge::{Challenge, ChallengeTrait},
+        round::{Round, RoundTrait},
+    };
     use pistols64::types::state::{ChallengeState};
     use pistols64::utils::store::{Store, StoreTrait};
-    use pistols64::utils::seeder::{make_seed};
+    use pistols64::utils::seeder::{make_seed, felt_to_u128};
+    
+    mod Errors {
+        const InvalidNameA: felt252 = 'PISTOLS64: Invalid name A';
+        const InvalidNameB: felt252 = 'PISTOLS64: Invalid name B';
+        const InvalidChallenge: felt252 = 'PISTOLS64: Invalid challenge';
+        const InvalidChallengeState: felt252 = 'PISTOLS64: Invalid state';
+        const InvalidDuelist: felt252 = 'PISTOLS64: Invalid duelist';
+        const InvalidCaller: felt252 = 'PISTOLS64: Invalid caller';
+    }
 
     fn dojo_init(ref world: IWorldDispatcher) {
         let planetary: PlanetaryInterface = PlanetaryInterfaceTrait::new();
@@ -41,15 +53,17 @@ mod actions {
 
     #[abi(embed_v0)]
     impl ActionsImpl of IActions<ContractState> {
-        fn create_challenge(ref world: IWorldDispatcher, name_a: felt252, name_b: felt252, message: felt252) -> u128 {
+        fn create_challenge(ref world: IWorldDispatcher, duelist_name_a: felt252, duelist_name_b: felt252, message: felt252) -> u128 {
+            assert(felt_to_u128(duelist_name_a) > 0xffffff, Errors::InvalidNameA); // check if name len is > 3
+            assert(felt_to_u128(duelist_name_b) > 0xffffff, Errors::InvalidNameB); // check if name len is > 3
             let caller: ContractAddress = starknet::get_caller_address();
             let duel_id: u128 = make_seed(caller, world.uuid());
             let challenge = Challenge {
                 duel_id,
                 address_a: caller,
                 address_b: caller,
-                name_a,
-                name_b,
+                duelist_name_a,
+                duelist_name_b,
                 message,
                 state: ChallengeState::InProgress,
                 winner: 0,
@@ -59,8 +73,20 @@ mod actions {
             (duel_id)
         }
 
-        fn move(ref world: IWorldDispatcher, name: felt252, moves: Array<felt252>) {
-            WORLD(world);
+        fn move(ref world: IWorldDispatcher, duel_id: u128, round_number: u8, duelist_name: felt252, moves: Span<felt252>) {
+            // validate challenge
+            let store: Store = StoreTrait::new(world);
+            let challenge: Challenge = store.get_challenge(duel_id);
+            assert(challenge.state != ChallengeState::Null, Errors::InvalidChallenge);
+            assert(challenge.state == ChallengeState::InProgress, Errors::InvalidChallengeState);
+
+            // validate duelist
+            let duelist_number: u8 = challenge.duelist_number(duelist_name);
+            assert(duelist_number > 0, Errors::InvalidDuelist);
+
+            // validate caller
+            let caller: ContractAddress = starknet::get_caller_address();
+            assert(caller == (if (duelist_number == 1) {challenge.address_a} else {challenge.address_b}), Errors::InvalidCaller);
         }
 
         // test with sozo:

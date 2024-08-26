@@ -1,7 +1,8 @@
 use dojo::world::{IWorldDispatcher, IWorldDispatcherTrait};
 
 use pistols64::models::{
-    challenge::{Challenge, ChallengeStore, ChallengeEntity, ChallengeEntityStore}
+    challenge::{Challenge, ChallengeStore, ChallengeEntity, ChallengeEntityStore},
+    round::{Round, RoundStore},
 };
 
 #[derive(Copy, Drop)]
@@ -20,7 +21,7 @@ impl StoreImpl of StoreTrait {
     // Getters
     //
 
-    #[inline]
+    #[inline(always)]
     fn get_challenge(self: Store, duel_id: u128) -> Challenge {
         // (get!(self.world, duel_id, (Challenge)))
         // dojo::model::ModelEntity::<ChallengeEntity>::get(self.world, 1); // OK
@@ -29,15 +30,25 @@ impl StoreImpl of StoreTrait {
         (ChallengeStore::get(self.world, duel_id))
     }
 
+    #[inline(always)]
+    fn get_round(self: Store, duel_id: u128, round_number: u8) -> Round {
+        (RoundStore::get(self.world, duel_id, round_number))
+    }
+
     //
     // Setters
     //
 
-    #[inline]
+    #[inline(always)]
     fn set_challenge(self: Store, challenge: Challenge) {
         // set!(self.world, (challenge));
         // challenge.set(world); // ERROR
         dojo::model::Model::<Challenge>::set(@challenge, self.world);
+    }
+
+    #[inline(always)]
+    fn set_round(self: Store, round: Round) {
+        dojo::model::Model::<Round>::set(@round, self.world);
     }
 
 }

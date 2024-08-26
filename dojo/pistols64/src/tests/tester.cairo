@@ -14,6 +14,7 @@ use pistols64::utils::store::{Store, StoreTrait};
     };
     use pistols64::models::{
         challenge::{challenge, Challenge},
+        round::{round, Round},
     };
 
     fn ZERO() -> ContractAddress { starknet::contract_address_const::<0x0>() }
@@ -53,6 +54,7 @@ use pistols64::utils::store::{Store, StoreTrait};
     fn setup_world(flags: u8) -> Systems {
         let mut models = array![
             challenge::TEST_CLASS_HASH,
+            round::TEST_CLASS_HASH,
         ];
 
         // setup testing
@@ -121,5 +123,10 @@ use pistols64::utils::store::{Store, StoreTrait};
         let duel_id: u128 = actions.create_challenge(name_a, name_b, message);
         _next_block();
         (duel_id)
+    }
+    fn execute_move(actions: IActionsDispatcher, sender: ContractAddress, duel_id: u128, round_number: u8, duelist_name: felt252, moves: Span<felt252>) {
+        impersonate(sender);
+        actions.move(duel_id, round_number, duelist_name, moves);
+        _next_block();
     }
 }

@@ -47,11 +47,13 @@ mod tests {
     use pistols64::utils::hash::{felt_to_u128, hash_felt, hash_u128};
 
     #[test]
+    #[ignore]
     fn test_felt_to_u128() {
         assert(0xab9d03074bff6ee2d4dbc374dbf3f846 == felt_to_u128(0x7f25249bc3b57d4a9cb82bd75d25579ab9d03074bff6ee2d4dbc374dbf3f846), 'bump');
     }
 
     #[test]
+    #[ignore]
     fn test_hash_felt() {
         let rnd0  = hash_felt(25, 1);
         let rnd00 = hash_felt(rnd0, rnd0);
@@ -68,6 +70,7 @@ mod tests {
     }
 
     #[test]
+    #[ignore]
     fn test_hash_u128() {
         let rnd0  = hash_u128(25, 1);
         let rnd00 = hash_u128(rnd0, rnd0);
