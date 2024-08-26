@@ -21,7 +21,7 @@ struct ToTInterface {
 impl ToTInterfaceImpl of ToTInterfaceTrait {
     
     const NAMESPACE: felt252 = 'the_oruggin_trail';
-    const ACTIONS_SELECTOR: felt252 = selector_from_tag!("the_oruggin_trail-actions");
+    const ACTIONS_SELECTOR: felt252 = selector_from_tag!("the_oruggin_trail-listener");
 
     fn new() -> ToTInterface {
         let world_address: ContractAddress = PlanetaryInterfaceTrait::new().dispatcher().get_world_address(Self::NAMESPACE);
