@@ -21,7 +21,7 @@ trait BladesCardTrait {
     fn is_cool(self: BladesCard) -> bool;
 }
 
-impl BladesCardTraitImpl of BladesCardTrait {
+impl BladesCardImpl of BladesCardTrait {
     fn is_cool(self: BladesCard) -> bool {
         match self {
             _ => true,

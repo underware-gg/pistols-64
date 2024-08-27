@@ -40,7 +40,7 @@ trait EnvCardTrait {
     fn is_cool(self: EnvCard) -> bool;
 }
 
-impl EnvCardTraitImpl of EnvCardTrait {
+impl EnvCardImpl of EnvCardTrait {
     fn is_cool(self: EnvCard) -> bool {
         match self {
             _ => true,

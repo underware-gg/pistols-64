@@ -26,7 +26,7 @@ trait ChallengeTrait {
     fn duelist_number(self: Challenge, duelist_name: felt252) -> u8;
 }
 
-impl ChallengeTraitImpl of ChallengeTrait {
+impl ChallengeImpl of ChallengeTrait {
     fn duelist_number(self: Challenge, duelist_name: felt252) -> u8 {
         (
             if (self.duelist_name_a == duelist_name) { 1 }

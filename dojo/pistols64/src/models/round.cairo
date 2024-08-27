@@ -47,7 +47,7 @@ trait RoundTrait {
 }
 
 impl RoundTraitImpl of RoundTrait {
-    fn duelist_number(self: Round, duelist_name: felt252) -> u8 {
         0
+    fn duel(ref self: Round) -> u8 {
     }
 }
