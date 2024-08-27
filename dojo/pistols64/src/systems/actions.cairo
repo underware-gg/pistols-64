@@ -13,6 +13,7 @@ trait IActions {
 #[dojo::contract]
 mod actions {
     use super::IActions;
+    use core::debug::PrintTrait;
     use starknet::{ContractAddress};
 
     use planetary_interface::interfaces::planetary::{
@@ -30,7 +31,7 @@ mod actions {
 
     use pistols64::models::{
         challenge::{Challenge, ChallengeTrait},
-        round::{Round, RoundTrait},
+        round::{Round, RoundTrait, Shot, ShotTrait},
     };
     use pistols64::types::{
         state::{ChallengeState},
@@ -85,7 +86,7 @@ mod actions {
         fn move(ref world: IWorldDispatcher, duel_id: u128, round_number: u8, duelist_name: felt252, moves: Span<u8>) {
             // validate challenge
             let store: Store = StoreTrait::new(world);
-            let challenge: Challenge = store.get_challenge(duel_id);
+            let mut challenge: Challenge = store.get_challenge(duel_id);
             assert(challenge.state != ChallengeState::Null, Errors::InvalidChallenge);
             assert(challenge.state == ChallengeState::InProgress, Errors::InvalidChallengeState);
 
@@ -96,6 +97,25 @@ mod actions {
             // validate caller
             let caller: ContractAddress = starknet::get_caller_address();
             assert(caller == (if (duelist_number == 1) {challenge.address_a} else {challenge.address_b}), Errors::InvalidCaller);
+
+            // set moves
+            let mut round: Round = store.get_round(duel_id, round_number);
+            if (duelist_number == 1) {
+                round.shot_a.initialize(moves);
+            } else {
+                round.shot_b.initialize(moves); 
+            }
+            
+            // time to duel!
+            if (round.shot_a.card_paces != PacesCard::Null && round.shot_b.card_paces != PacesCard::Null) {
+                // duel and decide winner
+                challenge.finalize(ref round);
+                // save challenge
+                store.set_challenge(challenge);
+            }
+
+            // save round
+            store.set_round(round);
         }
 
         // test with sozo:
