@@ -78,20 +78,3 @@ fn test_move_invalid_duelist() {
     tester::execute_move(sys.actions, OWNER(), duel_id, 1, 'AASSAFSDFSD', [0].span());
 }
 
-
-
-
-
-
-
-
-
-
-
-// #[test]
-// #[should_panic(expected:('PISTOLS64: Invalid state', 'ENTRYPOINT_FAILED'))]
-// fn test_move_invalid_duel_id() {
-//     let sys: Systems = tester::setup_world(0);
-//     let duel_id: u128 = tester::execute_create_challenge(sys.actions, OWNER(), NAME_A, NAME_B, MESSAGE);
-//     tester::execute_move(sys.actions, duel_id, 1, NAME_A, [0].span());
-// }

@@ -124,7 +124,7 @@ use pistols64::utils::store::{Store, StoreTrait};
         _next_block();
         (duel_id)
     }
-    fn execute_move(actions: IActionsDispatcher, sender: ContractAddress, duel_id: u128, round_number: u8, duelist_name: felt252, moves: Span<felt252>) {
+    fn execute_move(actions: IActionsDispatcher, sender: ContractAddress, duel_id: u128, round_number: u8, duelist_name: felt252, moves: Span<u8>) {
         impersonate(sender);
         actions.move(duel_id, round_number, duelist_name, moves);
         _next_block();

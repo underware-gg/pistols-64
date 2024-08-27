@@ -10,5 +10,5 @@ pub struct Planet {
 }
 
 #[generate_trait]
-impl PlanetTraitImpl of PlanetTrait {
+impl PlanetImpl of PlanetTrait {
 }
