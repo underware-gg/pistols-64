@@ -7,6 +7,11 @@ use planetary_interface::interfaces::planetary::{
     IPlanetaryActionsDispatcher, IPlanetaryActionsDispatcherTrait,
 };
 
+use planetary_interface::interfaces::tot::{
+    ToTInterface, ToTInterfaceTrait,
+    IToTActionsDispatcher, IToTActionsDispatcherTrait,
+};
+
 #[starknet::interface]
 trait IPistols64Actions<TState> {
     fn create_challenge(ref self: TState, duelist_name_a: felt252, duelist_name_b: felt252, message: felt252) -> u128;
