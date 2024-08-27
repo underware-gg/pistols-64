@@ -24,8 +24,8 @@ manifest_name = "dojo-base"
 [[contracts]]
 kind = "DojoContract"
 address = "0x3cbe76182dc3c32fdb22240f2d6f4b444624c1b7865ea7951f9ff9d06987b5c"
-class_hash = "0x580d460278dfd0d4a81e34076b7566d25646b6fb3298c04564dfa69cdf4120b"
-original_class_hash = "0x580d460278dfd0d4a81e34076b7566d25646b6fb3298c04564dfa69cdf4120b"
+class_hash = "0x72e53d4a52a00708f5c75da68a726b969a3d5aa016afbca357cdbbbdcc4a8d"
+original_class_hash = "0x72e53d4a52a00708f5c75da68a726b969a3d5aa016afbca357cdbbbdcc4a8d"
 base_class_hash = "0x2427dd10a58850ac9a5ca6ce04b7771b05330fd18f2e481831ad903b969e6b2"
 abi = "manifests/dev/deployment/abis/contracts/pistols64-actions-67633088.json"
 reads = []
@@ -37,6 +37,20 @@ init_calldata = []
 tag = "pistols64-actions"
 systems = ["move"]
 manifest_name = "pistols64-actions-67633088"
+
+[[contracts]]
+kind = "DojoContract"
+address = "0x70fe3150c1f5ecd6abb3e1e34fdb0c67933af0cce0ed7ae77387eec5d4cbdc2"
+class_hash = "0x1319a3cda6d7ff385840e1a15ca45449d3ccdfde216e52bec42246d67919679"
+original_class_hash = "0x1319a3cda6d7ff385840e1a15ca45449d3ccdfde216e52bec42246d67919679"
+base_class_hash = "0x2427dd10a58850ac9a5ca6ce04b7771b05330fd18f2e481831ad903b969e6b2"
+abi = "manifests/dev/deployment/abis/contracts/pistols64-rng-6a1b2e03.json"
+reads = []
+writes = []
+init_calldata = []
+tag = "pistols64-rng"
+systems = []
+manifest_name = "pistols64-rng-6a1b2e03"
 
 [[models]]
 kind = "DojoModel"
@@ -88,8 +102,8 @@ key = false
 
 [[models]]
 kind = "DojoModel"
-class_hash = "0x1bea27311f9f7e32323c3ba966b86cf57044cb9bdd85a154aab2ecb88de4d32"
-original_class_hash = "0x1bea27311f9f7e32323c3ba966b86cf57044cb9bdd85a154aab2ecb88de4d32"
+class_hash = "0x2eb9105740aa5846158d225fb1aeb69ed7f108355aae80b21ea077025989850"
+original_class_hash = "0x2eb9105740aa5846158d225fb1aeb69ed7f108355aae80b21ea077025989850"
 abi = "manifests/dev/deployment/abis/models/pistols64-Round-41ec1aaa.json"
 tag = "pistols64-Round"
 manifest_name = "pistols64-Round-41ec1aaa"
