@@ -21,7 +21,8 @@ struct ToTInterface {
 impl ToTInterfaceImpl of ToTInterfaceTrait {
     
     const NAMESPACE: felt252 = 'the_oruggin_trail';
-    const ACTIONS_SELECTOR: felt252 = selector_from_tag!("the_oruggin_trail-listener");
+    // note the `name_space-mod` naming convention
+    const ACTIONS_SELECTOR: felt252 = selector_from_tag!("the_oruggin_trail-meatpuppet");
 
     fn new() -> ToTInterface {
         let world_address: ContractAddress = PlanetaryInterfaceTrait::new().dispatcher().get_world_address(Self::NAMESPACE);
