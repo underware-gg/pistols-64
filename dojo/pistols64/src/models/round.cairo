@@ -6,6 +6,7 @@ use pistols64::types::cards::{
     blades::{BladesCard, BladesCardTrait},
 };
 use pistols64::types::constants::{CONST};
+use pistols64::systems::rng::{Rng, RngTrait};
 
 mod Errors {
     const InvalidMovesLength: felt252 = 'ROUND: Invalid moves length';
@@ -80,26 +81,23 @@ impl ShotImpl of ShotTrait {
 //
 
 trait RoundTrait {
-    fn duel(ref self: Round) -> u8;
+    fn duel(ref self: Round, ref rng: Rng) -> u8;
 }
 
 impl RoundImpl of RoundTrait {
-    fn duel(ref self: Round) -> u8 {
-        let mut shot_a = self.shot_a;
-        let mut shot_b = self.shot_b;
+    fn duel(ref self: Round, ref rng: Rng) -> u8 {
 
         // TODO: apply tactics card
         // TODO: apply blades cards
-        // card_tactics.apply(shot_a);
-        // card_tactics.apply(shot_b);
+        // card_tactics.apply(self.shot_a);
+        // card_tactics.apply(self.shot_b);
 
-        let mut seed: felt252 = self.duel_id.into();
         let mut winner: u8 = 0;
 
         let mut pace_number: u8 = 1;
         while (pace_number <= 10) {
             let pace = pace_number.into();
-            // println!("Pace [{}] A:{} B:{}", pace_number, shot_a.card_paces.as_felt(), shot_b.card_paces.as_felt());
+            // println!("Pace [{}] A:{} B:{}", pace_number, self.shot_a.card_paces.as_felt(), self.shot_b.card_paces.as_felt());
 
             // TODO: draw env cards
             // TODO: apply env card to shots
@@ -110,12 +108,13 @@ impl RoundImpl of RoundTrait {
             // Shoot!
             let mut executed_a: bool = false;
             let mut executed_b: bool = false;
-            if (shot_a.card_paces == pace) {
-                executed_b = shot_a.card_paces.shoot(ref shot_a, ref shot_b, ref seed);
+            if (self.shot_a.card_paces == pace) {
+                executed_b = self.shot_a.card_paces.shoot(ref rng, ref self.shot_a, ref self.shot_b, 'shoot_a');
             }
-            if (shot_b.card_paces == pace) {
-                executed_a = shot_b.card_paces.shoot(ref shot_b, ref shot_a, ref seed);
+            if (self.shot_b.card_paces == pace) {
+                executed_a = self.shot_b.card_paces.shoot(ref rng, ref self.shot_b, ref self.shot_a, 'shoot_b');
             }
+            // break if there's a winner
             if (executed_a || executed_b) {
                 if (!executed_a) {
                     winner = 1;
@@ -126,8 +125,8 @@ impl RoundImpl of RoundTrait {
             }
 
             //
-            // Blades
-            if (shot_a.dice_crit > 0 && shot_b.dice_crit > 0) {
+            // both dices rolled, no winner, go to blades
+            if (self.shot_a.dice_crit > 0 && self.shot_b.dice_crit > 0) {
                 //TODO: duel blades
                 break;
             }

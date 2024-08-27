@@ -5,7 +5,7 @@ use dojo::world::{IWorldDispatcher, IWorldDispatcherTrait};
 use pistols64::utils::store::{Store, StoreTrait};
 use pistols64::models::{
     challenge::{Challenge},
-    round::{Round},
+    round::{Round, RoundTrait, Shot, ShotTrait},
 };
 use pistols64::types::{
     state::{ChallengeState},

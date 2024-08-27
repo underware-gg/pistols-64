@@ -1,6 +1,6 @@
 use pistols64::models::round::{Shot};
-use pistols64::utils::random::{throw_dice};
 use pistols64::utils::math::{MathU8};
+use pistols64::systems::rng::{Rng, RngTrait};
 
 #[derive(Copy, Drop, Serde, PartialEq, Introspect)]
 enum PacesCard {
@@ -36,7 +36,7 @@ mod PACES {
 trait PacesCardTrait {
     fn is_cool(self: PacesCard) -> bool;
     fn as_felt(self: PacesCard) -> felt252;
-    fn shoot(self: PacesCard, ref shot_self: Shot, ref shot_other: Shot, ref seed: felt252)-> bool ;
+    fn shoot(self: PacesCard, ref rng: Rng, ref shot_self: Shot, ref shot_other: Shot, salt: felt252)-> bool ;
 }
 
 impl PacesCardImpl of PacesCardTrait {
@@ -49,11 +49,12 @@ impl PacesCardImpl of PacesCardTrait {
         let result: u8 = self.into();
         (result.into())
     }
-    fn shoot(self: PacesCard, ref shot_self: Shot, ref shot_other: Shot, ref seed: felt252) -> bool {
+    fn shoot(self: PacesCard, ref rng: Rng, ref shot_self: Shot, ref shot_other: Shot, salt: felt252) -> bool {
         if (shot_other.card_dodge == self) {
             shot_self.final_chances = 0;
         }
-        shot_self.dice_crit = throw_dice(ref seed, 100);
+        shot_self.dice_crit = rng.throw_dice(salt, 100);
+// println!("dice {} seed {}", shot_self.dice_crit, seed);
         let damage: u8 = if (shot_self.dice_crit <= shot_self.final_chances) {shot_self.final_damage} else {0};
         shot_other.final_health = MathU8::sub(shot_other.initial_health, damage);
         (shot_other.final_health == 0)

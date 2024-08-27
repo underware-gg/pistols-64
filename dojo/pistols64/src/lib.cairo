@@ -1,5 +1,6 @@
 mod systems {
     mod actions;
+    mod rng;
     mod interfaces;
 }
 
@@ -21,7 +22,6 @@ mod types {
 
 mod utils {
     mod store;
-    mod random;
     mod seeder;
     mod math;
 }

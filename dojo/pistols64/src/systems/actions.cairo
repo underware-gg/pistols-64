@@ -42,6 +42,7 @@ mod actions {
         blades::{BladesCard, BladesCardTrait},
         env::{EnvCard, EnvCardTrait},
     };
+    use pistols64::systems::rng::{Rng, RngTrait};
     use pistols64::utils::store::{Store, StoreTrait};
     use pistols64::utils::seeder::{make_seed, felt_to_u128};
     
@@ -108,8 +109,9 @@ mod actions {
             
             // time to duel!
             if (round.shot_a.card_paces != PacesCard::Null && round.shot_b.card_paces != PacesCard::Null) {
+                let mut rng: Rng = RngTrait::new(world, duel_id);
                 // duel and decide winner
-                challenge.finalize(ref round);
+                challenge.finalize(ref rng, ref round);
                 // save challenge
                 store.set_challenge(challenge);
             }
