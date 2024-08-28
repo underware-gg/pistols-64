@@ -8,3 +8,7 @@ def str_to_hex(msg):
 def hex_to_number(hex_str):
   return int(hex_str, 16)
 
+def hex_to_str(hex_str):
+  if hex_str.startswith('0x'):
+    hex_str = hex_str[2:]
+  return bytes.fromhex(hex_str).decode('utf-8') if int(hex_str) > 0 else ""

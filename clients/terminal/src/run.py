@@ -71,7 +71,7 @@ def sozo_call(function, calldata):
 #
 if __name__ == '__main__':
   # draw the tavern
-  # ascii.clear_screen()
+  ascii.clear_screen()
   smoke()
   tavern()
 
@@ -99,9 +99,9 @@ if __name__ == '__main__':
   # [ 0xce6788dee1a083c26cd2a32c69285989 0x3234323335 0x3433343334333232 0x3233343233 0x2 0x2 0x3 0x2 0x5 0x6 0x1 0x0 ]
   result = sozo_call("get_challenge_results", f"{duel_id}")
   result_duel_id = utils.hex_to_number(result[0])
-  result_name_a = utils.hex_to_number(result[1])
-  result_name_b = utils.hex_to_number(result[2])
-  result_message = utils.hex_to_number(result[3])
+  result_name_a = utils.hex_to_str(result[1])
+  result_name_b = utils.hex_to_str(result[2])
+  result_message = utils.hex_to_str(result[3])
   # result_moves_a_len = utils.hex_to_number(result[4])
   result_paces_a = utils.hex_to_number(result[5])
   result_dodge_a = utils.hex_to_number(result[6])
@@ -109,6 +109,6 @@ if __name__ == '__main__':
   result_paces_b = utils.hex_to_number(result[8])
   result_dodge_b = utils.hex_to_number(result[9])
   result_finished = True if utils.hex_to_number(result[10]) == 1 else False
-  result_winner = utils.hex_to_number(result[11])
+  result_winner = utils.hex_to_str(result[11])
   result_winner_name = result_name_a if result_winner == 1 else result_name_b if result_winner == 2 else None
-  render_duel(name_a, name_b, message, paces_a, dodge_a, paces_b, dodge_b, result_winner_name)
+  render_duel(name_a, name_b, message, result_paces_a, result_dodge_a, result_paces_b, result_dodge_b, result_winner_name)
