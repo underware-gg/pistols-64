@@ -51,6 +51,7 @@ mod actions {
     mod Errors {
         const InvalidNameA: felt252 = 'PISTOLS64: Invalid name A';
         const InvalidNameB: felt252 = 'PISTOLS64: Invalid name B';
+        const InvalidNames: felt252 = 'PISTOLS64: Names are equal';
         const InvalidChallenge: felt252 = 'PISTOLS64: Invalid challenge';
         const InvalidChallengeState: felt252 = 'PISTOLS64: Invalid state';
         const InvalidDuelist: felt252 = 'PISTOLS64: Invalid duelist';
@@ -68,6 +69,7 @@ mod actions {
         fn create_challenge(ref world: IWorldDispatcher, duelist_name_a: felt252, duelist_name_b: felt252, message: felt252) -> u128 {
             assert(felt_to_u128(duelist_name_a) > 0xffff, Errors::InvalidNameA); // check if name len is >= 3
             assert(felt_to_u128(duelist_name_b) > 0xffff, Errors::InvalidNameB); // check if name len is >= 3
+            assert(duelist_name_a != duelist_name_b, Errors::InvalidNames);
             let caller: ContractAddress = starknet::get_caller_address();
             let duel_id: u128 = make_seed(caller, world.uuid());
             let challenge = Challenge {

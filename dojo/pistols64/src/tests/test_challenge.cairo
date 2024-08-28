@@ -51,6 +51,13 @@ fn test_create_challenge_invalid_name_b() {
     tester::execute_create_challenge(sys.actions, OWNER(), NAME_A, 'ZZ', MESSAGE);
 }
 
+#[test]
+#[should_panic(expected:('PISTOLS64: Names are equal', 'ENTRYPOINT_FAILED'))]
+fn test_create_challenge_invalid_names() {
+    let sys: Systems = tester::setup_world(0);
+    tester::execute_create_challenge(sys.actions, OWNER(), NAME_A, NAME_A, MESSAGE);
+}
+
 //
 // Move fails
 //
