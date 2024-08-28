@@ -9,7 +9,7 @@ use planetary_interface::interfaces::planetary::{
 
 #[starknet::interface]
 trait IToTActions<TState> {
-    fn command_shoggoth(ref self: TState, name_fool: felt252, wish: Array<ByteArray>) -> u128;
+    fn command_shoggoth(ref self: TState, victim: felt252, wish: Array<ByteArray>) -> ByteArray;
 }
 
 #[derive(Copy, Drop)]

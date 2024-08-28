@@ -8,7 +8,11 @@ trait IActions {
 
     // test vulcan interface
     fn live_long(world: @IWorldDispatcher) -> felt252;
+
+    // calls to TOT
+    fn live_fast_die_jung(ref world: IWorldDispatcher ) -> ByteArray;
 }
+
 
 #[dojo::contract]
 mod actions {
@@ -27,6 +31,13 @@ mod actions {
         VulcanInterface, VulcanInterfaceTrait,
         IVulcanSaluteDispatcher, IVulcanSaluteDispatcherTrait,
     };
+    
+    // TOT calls
+    use planetary_interface::interfaces::tot::{
+        ToTInterface, ToTInterfaceTrait,
+        IToTActionsDispatcher, IToTActionsDispatcherTrait,
+    };
+
     use planetary_interface::utils::misc::{WORLD};
 
     use pistols64::models::{
@@ -124,6 +135,14 @@ mod actions {
             WORLD(world);
             let vulcan: IVulcanSaluteDispatcher = VulcanInterfaceTrait::new().dispatcher();
             (vulcan.live_long())
+        }
+
+        // call out to ToT via the interface
+        fn live_fast_die_jung(ref world: IWorldDispatcher) -> ByteArray {
+            WORLD(world);
+            let tot: IToTActionsDispatcher = ToTInterfaceTrait::new().dispatcher();
+            let command: Array<ByteArray> = array!["look", "around"];
+            (tot.command_shoggoth(23, command))
         }
     }
 }

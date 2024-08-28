@@ -367,31 +367,157 @@
     "interface_name": "pistols64::models::round::Iround"
   },
   {
+    "type": "enum",
+    "name": "pistols64::types::cards::paces::PacesCard",
+    "variants": [
+      {
+        "name": "Null",
+        "type": "()"
+      },
+      {
+        "name": "Paces1",
+        "type": "()"
+      },
+      {
+        "name": "Paces2",
+        "type": "()"
+      },
+      {
+        "name": "Paces3",
+        "type": "()"
+      },
+      {
+        "name": "Paces4",
+        "type": "()"
+      },
+      {
+        "name": "Paces5",
+        "type": "()"
+      },
+      {
+        "name": "Paces6",
+        "type": "()"
+      },
+      {
+        "name": "Paces7",
+        "type": "()"
+      },
+      {
+        "name": "Paces8",
+        "type": "()"
+      },
+      {
+        "name": "Paces9",
+        "type": "()"
+      },
+      {
+        "name": "Paces10",
+        "type": "()"
+      }
+    ]
+  },
+  {
+    "type": "enum",
+    "name": "pistols64::types::cards::tactics::TacticsCard",
+    "variants": [
+      {
+        "name": "Null",
+        "type": "()"
+      },
+      {
+        "name": "Insult",
+        "type": "()"
+      },
+      {
+        "name": "CoinToss",
+        "type": "()"
+      },
+      {
+        "name": "Vengeful",
+        "type": "()"
+      },
+      {
+        "name": "ThickCoat",
+        "type": "()"
+      },
+      {
+        "name": "Reversal",
+        "type": "()"
+      },
+      {
+        "name": "Bananas",
+        "type": "()"
+      }
+    ]
+  },
+  {
+    "type": "enum",
+    "name": "pistols64::types::cards::blades::BladesCard",
+    "variants": [
+      {
+        "name": "Null",
+        "type": "()"
+      },
+      {
+        "name": "Seppuku",
+        "type": "()"
+      },
+      {
+        "name": "RunAway",
+        "type": "()"
+      },
+      {
+        "name": "Behead",
+        "type": "()"
+      },
+      {
+        "name": "Grapple",
+        "type": "()"
+      }
+    ]
+  },
+  {
     "type": "struct",
     "name": "pistols64::models::round::Shot",
     "members": [
       {
-        "name": "hash",
-        "type": "core::integer::u64"
+        "name": "card_paces",
+        "type": "pistols64::types::cards::paces::PacesCard"
       },
       {
-        "name": "salt",
-        "type": "core::integer::u64"
+        "name": "card_dodge",
+        "type": "pistols64::types::cards::paces::PacesCard"
       },
       {
-        "name": "action",
-        "type": "core::integer::u16"
+        "name": "card_tactics",
+        "type": "pistols64::types::cards::tactics::TacticsCard"
       },
       {
-        "name": "chance_crit",
+        "name": "card_blades",
+        "type": "pistols64::types::cards::blades::BladesCard"
+      },
+      {
+        "name": "initial_chances",
         "type": "core::integer::u8"
       },
       {
-        "name": "chance_hit",
+        "name": "initial_damage",
         "type": "core::integer::u8"
       },
       {
-        "name": "chance_lethal",
+        "name": "initial_health",
+        "type": "core::integer::u8"
+      },
+      {
+        "name": "final_chances",
+        "type": "core::integer::u8"
+      },
+      {
+        "name": "final_damage",
+        "type": "core::integer::u8"
+      },
+      {
+        "name": "final_health",
         "type": "core::integer::u8"
       },
       {
@@ -399,31 +525,7 @@
         "type": "core::integer::u8"
       },
       {
-        "name": "dice_hit",
-        "type": "core::integer::u8"
-      },
-      {
-        "name": "damage",
-        "type": "core::integer::u8"
-      },
-      {
-        "name": "block",
-        "type": "core::integer::u8"
-      },
-      {
         "name": "win",
-        "type": "core::integer::u8"
-      },
-      {
-        "name": "wager",
-        "type": "core::integer::u8"
-      },
-      {
-        "name": "health",
-        "type": "core::integer::u8"
-      },
-      {
-        "name": "honour",
         "type": "core::integer::u8"
       }
     ]
