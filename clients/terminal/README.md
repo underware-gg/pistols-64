@@ -78,3 +78,9 @@ export DOJO_MANIFEST_PATH=../../../dojo/pistols64/Scarb.toml
 python ./run.py
 ```
 
+render some random duels:
+
+```sh
+cd clients/terminal
+python render_duel.py Ringo George 'Hallelujah my a**!' 9 10 10 1 Ringo
+```

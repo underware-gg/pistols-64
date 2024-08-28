@@ -1,7 +1,11 @@
+# Add the parent directory to sys.path
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from libs import ascii_lib as ascii
 from libs import render
+from libs import utils
 import time
-import sys
 import random
 
 
@@ -11,9 +15,6 @@ sleepTime = (1.0 / frameRate)
 
 playerX = 15
 playerY = 3
-
-def clamp(value, min_value, max_value):
-  return max(min(value, max_value), min_value)
 
 
 # Infinite loop. Use CTR-C to stop
@@ -29,8 +30,8 @@ while True:
   # move randomly
   playerX = (playerX + random.randint(-1, 1))
   playerY = (playerY + random.randint(-1, 1))
-  playerX = clamp(playerX, 0, render.frameWidth - len(tex[0]))
-  playerY = clamp(playerY, 0, render.frameHeight - len(tex))
+  playerX = utils.clamp(playerX, 0, render.frameWidth - len(tex[0]))
+  playerY = utils.clamp(playerY, 0, render.frameHeight - len(tex))
 
   # render
   render.render()
