@@ -22,12 +22,12 @@ export function defineContractComponents(world: World) {
     Round: (() => {
       return defineComponent(
         world,
-        { duel_id: RecsType.BigInt, round_number: RecsType.Number, shot_a: { hash: RecsType.BigInt, salt: RecsType.BigInt, action: RecsType.Number, chance_crit: RecsType.Number, chance_hit: RecsType.Number, chance_lethal: RecsType.Number, dice_crit: RecsType.Number, dice_hit: RecsType.Number, damage: RecsType.Number, block: RecsType.Number, win: RecsType.Number, wager: RecsType.Number, health: RecsType.Number, honour: RecsType.Number }, shot_b: { hash: RecsType.BigInt, salt: RecsType.BigInt, action: RecsType.Number, chance_crit: RecsType.Number, chance_hit: RecsType.Number, chance_lethal: RecsType.Number, dice_crit: RecsType.Number, dice_hit: RecsType.Number, damage: RecsType.Number, block: RecsType.Number, win: RecsType.Number, wager: RecsType.Number, health: RecsType.Number, honour: RecsType.Number } },
+        { duel_id: RecsType.BigInt, round_number: RecsType.Number, shot_a: { card_paces: RecsType.Number, card_dodge: RecsType.Number, card_tactics: RecsType.Number, card_blades: RecsType.Number, initial_chances: RecsType.Number, initial_damage: RecsType.Number, initial_health: RecsType.Number, final_chances: RecsType.Number, final_damage: RecsType.Number, final_health: RecsType.Number, dice_crit: RecsType.Number, win: RecsType.Number }, shot_b: { card_paces: RecsType.Number, card_dodge: RecsType.Number, card_tactics: RecsType.Number, card_blades: RecsType.Number, initial_chances: RecsType.Number, initial_damage: RecsType.Number, initial_health: RecsType.Number, final_chances: RecsType.Number, final_damage: RecsType.Number, final_health: RecsType.Number, dice_crit: RecsType.Number, win: RecsType.Number } },
         {
           metadata: {
             name: "pistols64-Round",
-            types: ["u128","u8","u64","u64","u16","u8","u8","u8","u8","u8","u8","u8","u8","u8","u8","u8","u64","u64","u16","u8","u8","u8","u8","u8","u8","u8","u8","u8","u8","u8"],
-            customTypes: ["Shot","Shot"],
+            types: ["u128","u8","enum","enum","enum","enum","u8","u8","u8","u8","u8","u8","u8","u8","enum","enum","enum","enum","u8","u8","u8","u8","u8","u8","u8","u8"],
+            customTypes: ["Shot","PacesCard","PacesCard","TacticsCard","BladesCard","Shot","PacesCard","PacesCard","TacticsCard","BladesCard"],
           },
         }
       );

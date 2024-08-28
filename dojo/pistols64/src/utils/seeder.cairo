@@ -1,44 +1,82 @@
 // use debug::PrintTrait;
 use starknet::{ContractAddress};
-use pistols64::utils::hash::{hash_u128, hash_u128_to_u256, felt_to_u128};
+
+// https://github.com/starkware-libs/cairo/blob/main/corelib/src/integer.cairo
+// https://github.com/smartcontractkit/chainlink-starknet/blob/develop/contracts/src/utils.cairo
+use integer::{u128s_from_felt252, U128sFromFelt252Result};
 
 // https://github.com/starkware-libs/cairo/blob/main/corelib/src/starknet/info.cairo
 use starknet::get_block_info;
 
-fn make_seed(address: ContractAddress, uuid: usize) -> u128 {
-    hash_u128(felt_to_u128(address.into()) ^ uuid.into(), _make_block_hash())
+// https://github.com/starkware-libs/cairo/blob/main/corelib/src/pedersen.cairo
+extern fn pedersen(a: felt252, b: felt252) -> felt252 implicits(Pedersen) nopanic;
+
+// alternative:
+// https://github.com/dojoengine/starter-rpg/blob/main/contracts/src/helpers/seeder.cairo
+// https://github.com/starkware-libs/cairo/blob/main/corelib/src/poseidon.cairo
+use core::poseidon::{PoseidonTrait, HashState};
+
+
+fn make_seed(caller: ContractAddress, uuid: usize) -> u128 {
+    let hash: felt252 = hash_values([
+        make_block_hash(),
+        caller.into(),
+        uuid.into(),
+    ].span());
+    (felt_to_u128(hash))
 }
 
-fn _make_block_hash() -> u128 {
-    // let block_number = get_block_number();
-    // let block_timestamp = get_block_timestamp();
+fn make_block_hash() -> felt252 {
     let block_info = get_block_info().unbox();
-    hash_u128(block_info.block_number.into(), block_info.block_timestamp.into())
+    let hash: felt252 = hash_values([
+        block_info.block_number.into(),
+        block_info.block_timestamp.into(),
+    ].span());
+    (hash)
 }
 
+fn hash_values(values: Span<felt252>) -> felt252 {
+    assert(values.len() > 0, 'hash_values() has no values!');
+    if (values.len() == 1) {
+        (pedersen(*values[0], *values[0]))
+    } else {
+        let mut result = pedersen(*values[0], *values[1]);
+        let mut index: usize = 2;
+        while (index < values.len()) {
+            result = pedersen(result, *values[index]);
+            index += 1;
+        };
+        (result)
+    }
+}
+
+fn felt_to_u128(value: felt252) -> u128 {
+    match u128s_from_felt252(value) {
+        U128sFromFelt252Result::Narrow(x) => x,
+        U128sFromFelt252Result::Wide((_, x)) => x,
+    }
+}
 
 
 //----------------------------------------
 // Unit  tests
 //
 #[cfg(test)]
-#[ignore]
 mod tests {
     use debug::PrintTrait;
-    use pistols64::utils::seeder::{
-        _make_block_hash,
+    use super::{
+        make_block_hash,
         make_seed,
+        hash_values,
     };
 
     #[test]
-    #[ignore]
-    fn test__make_block_hash() {
-        let h = _make_block_hash();
+    fn test_make_block_hash() {
+        let h = make_block_hash();
         assert(h != 0, 'block hash');
     }
 
     #[test]
-    #[ignore]
     fn test_make_seed() {
         let s0 = make_seed(starknet::contract_address_const::<0x0>(), 1);
         let s1 = make_seed(starknet::contract_address_const::<0x1>(), 1);
@@ -62,5 +100,19 @@ mod tests {
         assert(s3 != s4,   's3 != s4');
         // same seed, same value
         assert(s0 == s0_1, 's0 == s0_1');
+    }
+
+    #[test]
+    fn test_hash_values() {
+        let h1: felt252 = hash_values([111].span());
+        let h2: felt252 = hash_values([111, 222].span());
+        let h22: felt252 = hash_values([222, 111].span());
+        let h3: felt252 = hash_values([111, 222, 333].span());
+        let h4: felt252 = hash_values([111, 222, 333, 444].span());
+        assert(h1 != 0,  'h1');
+        assert(h1 != h2, 'h1 != h2');
+        assert(h2 != h3, 'h2 != h3');
+        assert(h3 != h4, 'h3 != h4');
+        assert(h2 != h22, 'h2 != h22');
     }
 }

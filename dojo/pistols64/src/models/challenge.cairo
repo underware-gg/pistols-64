@@ -1,6 +1,7 @@
 use starknet::ContractAddress;
 use pistols64::types::state::ChallengeState;
 use pistols64::models::round::{Round, RoundTrait};
+use pistols64::systems::rng::{Rng, RngTrait};
 
 #[derive(Copy, Drop, Serde)]
 #[dojo::model]
@@ -25,7 +26,7 @@ pub struct Challenge {
 
 trait ChallengeTrait {
     fn duelist_number(self: Challenge, duelist_name: felt252) -> u8;
-    fn finalize(ref self: Challenge, ref round: Round);
+    fn finalize(ref self: Challenge, ref rng: Rng, ref round: Round);
 }
 
 impl ChallengeImpl of ChallengeTrait {
@@ -36,8 +37,8 @@ impl ChallengeImpl of ChallengeTrait {
             else { 0 }
         )
     }
-    fn finalize(ref self: Challenge, ref round: Round) {
-        self.winner = round.duel();
+    fn finalize(ref self: Challenge, ref rng: Rng, ref round: Round) {
+        self.winner = round.duel(ref rng);
         self.state = if(self.winner > 0) {ChallengeState::Resolved} else {ChallengeState::Draw};
     }
 }

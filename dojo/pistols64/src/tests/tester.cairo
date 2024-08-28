@@ -8,10 +8,9 @@ mod tester {
     use dojo::world::{IWorldDispatcher, IWorldDispatcherTrait};
     use dojo::utils::test::{spawn_test_world, deploy_contract};
 
-use pistols64::utils::store::{Store, StoreTrait};
-    use pistols64::systems::actions::{
-        actions, IActionsDispatcher, IActionsDispatcherTrait
-    };
+    use pistols64::utils::store::{Store, StoreTrait};
+    use pistols64::systems::actions::{actions, IActionsDispatcher, IActionsDispatcherTrait};
+    use pistols64::systems::rng::{rng, IRngDispatcher, IRngDispatcherTrait};
     use pistols64::models::{
         challenge::{challenge, Challenge},
         round::{round, Round},
@@ -39,6 +38,7 @@ use pistols64::utils::store::{Store, StoreTrait};
     struct Systems {
         world: IWorldDispatcher,
         actions: IActionsDispatcher,
+        rng: IRngDispatcher,
         store: Store,
     }
 
@@ -74,9 +74,13 @@ use pistols64::utils::store::{Store, StoreTrait};
                 (address)
             }
         };
-        // if (pistols64.contract_address.is_non_zero()) {
-        //     pistols64.init();
-        // }
+        let rng = IRngDispatcher{ contract_address:
+            {
+                let address = deploy_system(world, 'rng', rng::TEST_CLASS_HASH);
+                world.grant_owner(dojo::utils::bytearray_hash(@"pistols64"), address);
+                (address)
+            }
+        };
         
         impersonate(OWNER());
 
@@ -84,7 +88,8 @@ use pistols64::utils::store::{Store, StoreTrait};
 
         (Systems{
             world,
-            actions:pistols64,
+            actions: pistols64,
+            rng,
             store,
         })
     }
@@ -109,7 +114,7 @@ use pistols64::utils::store::{Store, StoreTrait};
     }
 
     #[inline(always)]
-    fn _next_block() -> (u64, u64) {
+    fn next_block() -> (u64, u64) {
         elapse_timestamp(INITIAL_STEP)
     }
 
@@ -121,12 +126,12 @@ use pistols64::utils::store::{Store, StoreTrait};
     fn execute_create_challenge(actions: IActionsDispatcher, sender: ContractAddress, name_a: felt252, name_b: felt252, message: felt252) -> u128 {
         impersonate(sender);
         let duel_id: u128 = actions.create_challenge(name_a, name_b, message);
-        _next_block();
+        next_block();
         (duel_id)
     }
     fn execute_move(actions: IActionsDispatcher, sender: ContractAddress, duel_id: u128, round_number: u8, duelist_name: felt252, moves: Span<u8>) {
         impersonate(sender);
         actions.move(duel_id, round_number, duelist_name, moves);
-        _next_block();
+        next_block();
     }
 }

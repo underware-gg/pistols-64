@@ -53,6 +53,7 @@ mod actions {
         blades::{BladesCard, BladesCardTrait},
         env::{EnvCard, EnvCardTrait},
     };
+    use pistols64::systems::rng::{Rng, RngTrait};
     use pistols64::utils::store::{Store, StoreTrait};
     use pistols64::utils::seeder::{make_seed, felt_to_u128};
     
@@ -74,8 +75,8 @@ mod actions {
     #[abi(embed_v0)]
     impl ActionsImpl of IActions<ContractState> {
         fn create_challenge(ref world: IWorldDispatcher, duelist_name_a: felt252, duelist_name_b: felt252, message: felt252) -> u128 {
-            assert(felt_to_u128(duelist_name_a) > 0xffffff, Errors::InvalidNameA); // check if name len is > 3
-            assert(felt_to_u128(duelist_name_b) > 0xffffff, Errors::InvalidNameB); // check if name len is > 3
+            assert(felt_to_u128(duelist_name_a) > 0xffff, Errors::InvalidNameA); // check if name len is >= 3
+            assert(felt_to_u128(duelist_name_b) > 0xffff, Errors::InvalidNameB); // check if name len is >= 3
             let caller: ContractAddress = starknet::get_caller_address();
             let duel_id: u128 = make_seed(caller, world.uuid());
             let challenge = Challenge {
@@ -90,7 +91,7 @@ mod actions {
             };
             let store: Store = StoreTrait::new(world);
             store.set_challenge(challenge);
-            println!("new challenge: [{}]", duel_id);
+            // println!("new challenge: [{}]", duel_id);
             (duel_id)
         }
 
@@ -119,8 +120,9 @@ mod actions {
             
             // time to duel!
             if (round.shot_a.card_paces != PacesCard::Null && round.shot_b.card_paces != PacesCard::Null) {
+                let mut rng: Rng = RngTrait::new(world, duel_id);
                 // duel and decide winner
-                challenge.finalize(ref round);
+                challenge.finalize(ref rng, ref round);
                 // save challenge
                 store.set_challenge(challenge);
             }

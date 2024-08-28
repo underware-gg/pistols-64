@@ -5,6 +5,28 @@ import { BigNumberish } from 'starknet';
 // contants
 //
 
+// from: ../../dojo/pistols64/src/models/round.cairo
+type type_Errors = {
+  InvalidMovesLength: string, // cairo: felt252
+  InvalidPaces: string, // cairo: felt252
+  InvalidDodge: string, // cairo: felt252
+};
+export const Errors: type_Errors = {
+  InvalidMovesLength: 'ROUND: Invalid moves length',
+  InvalidPaces: 'ROUND: Invalid paces',
+  InvalidDodge: 'ROUND: Invalid dodge',
+};
+
+// from: ../../dojo/pistols64/src/systems/interfaces.cairo
+type type_SELECTORS = {
+  ACTIONS: BigNumberish, // cairo: felt252
+  RNG: BigNumberish, // cairo: felt252
+};
+export const SELECTORS: type_SELECTORS = {
+  ACTIONS: '0x06763308890aa917baac0b5c2f7b10e58c75046294e5d78ce463b513e346b3d3', // 'selector_from_tag!("pistols64-actions")'
+  RNG: '0x06a1b2e0396e8fb0453cda70e8b588fe04bd3e010da2d469e7b409fe99820a12', // 'selector_from_tag!("pistols64-rng")'
+};
+
 // from: ../../dojo/pistols64/src/types/cards/blades.cairo
 type type_BLADES = {
   NULL: number, // cairo: u8
@@ -99,6 +121,22 @@ export const TACTICS: type_TACTICS = {
   THICK_COAT: 4,
   REVERSAL: 5,
   BANANAS: 6,
+};
+
+// from: ../../dojo/pistols64/src/types/constants.cairo
+type type_CONST = {
+  ROUND_COUNT: number, // cairo: u8
+  FULL_HEALTH: number, // cairo: u8
+  DOUBLE_DAMAGE: number, // cairo: u8
+  SINGLE_DAMAGE: number, // cairo: u8
+  INITIAL_CHANCE: number, // cairo: u8
+};
+export const CONST: type_CONST = {
+  ROUND_COUNT: 1,
+  FULL_HEALTH: 3,
+  DOUBLE_DAMAGE: 2,
+  SINGLE_DAMAGE: 1,
+  INITIAL_CHANCE: 50,
 };
 
 // from: ../../dojo/pistols64/src/types/state.cairo

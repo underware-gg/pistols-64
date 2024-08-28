@@ -30,10 +30,12 @@ cd dojo/pistols64
 export NAME_A=0x$(echo "Ringo"|xxd -p)
 export NAME_B=0x$(echo "George"|xxd -p)
 export MESSAGE=0x$(echo "Hallelujah my a**\!"|xxd -p)
-sozo call pistols64-actions create_challenge --calldata $NAME_A,$NAME_B,$MESSAGE --wait --receipt
+sozo execute pistols64-actions create_challenge --calldata $NAME_A,$NAME_B,$MESSAGE --wait --receipt
   > Transaction hash: 0x0798927e62fd6812825b8911fe520d78b8a2c714031debbe2c6c5d9e7dc9dfcd
   > Receipt: {...}
 ```
+
+
 
 
 ## Shell Terminal Client
@@ -61,5 +63,18 @@ python --version
 
 ```
 ¯\_(ツ)_/¯
+```
+
+### Run the client
+
+On localhost Katana:
+
+```sh
+cd clients/terminal
+export STARKNET_RPC_URL=http://localhost:5050
+export DOJO_ACCOUNT_ADDRESS=0xb3ff441a68610b30fd5e2abbf3a1548eb6ba6f3559f2862bf2dc757e5828ca
+export DOJO_PRIVATE_KEY=0x2bbf4f9fd0bbb2e60b0316c1fe0b76cf7a4d0198bd493ced9b8df2a3a24d68a
+export DOJO_MANIFEST_PATH=../../../dojo/pistols64/Scarb.toml
+python ./run.py
 ```
 

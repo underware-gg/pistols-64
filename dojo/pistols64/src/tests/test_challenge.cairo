@@ -5,7 +5,7 @@ use dojo::world::{IWorldDispatcher, IWorldDispatcherTrait};
 use pistols64::utils::store::{Store, StoreTrait};
 use pistols64::models::{
     challenge::{Challenge},
-    round::{Round},
+    round::{Round, RoundTrait, Shot, ShotTrait},
 };
 use pistols64::types::{
     state::{ChallengeState},
@@ -15,8 +15,8 @@ use pistols64::tests::tester::{
     tester::{Systems, ZERO, OWNER, OTHER}
 };
 
-const NAME_A: felt252 = '0000';
-const NAME_B: felt252 = '9999';
+const NAME_A: felt252 = '000';
+const NAME_B: felt252 = 'ZZZ';
 const MESSAGE: felt252 = 'Fork you!';
 
 
