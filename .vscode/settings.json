@@ -9,6 +9,7 @@
     "**/*.tsbuildinfo": true,
     "**/next-env.d.ts": true,
     "lords_mock": true,
+    "**/__pycache__": true,
   },
   "search.exclude": {
     "**/*-lock.json": true,
