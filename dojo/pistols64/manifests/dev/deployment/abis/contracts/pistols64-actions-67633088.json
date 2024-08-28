@@ -160,6 +160,58 @@
     ]
   },
   {
+    "type": "enum",
+    "name": "core::bool",
+    "variants": [
+      {
+        "name": "False",
+        "type": "()"
+      },
+      {
+        "name": "True",
+        "type": "()"
+      }
+    ]
+  },
+  {
+    "type": "struct",
+    "name": "pistols64::models::challenge::ChallengeResults",
+    "members": [
+      {
+        "name": "duel_id",
+        "type": "core::integer::u128"
+      },
+      {
+        "name": "duelist_name_a",
+        "type": "core::felt252"
+      },
+      {
+        "name": "duelist_name_b",
+        "type": "core::felt252"
+      },
+      {
+        "name": "message",
+        "type": "core::felt252"
+      },
+      {
+        "name": "moves_a",
+        "type": "core::array::Span::<core::integer::u8>"
+      },
+      {
+        "name": "moves_b",
+        "type": "core::array::Span::<core::integer::u8>"
+      },
+      {
+        "name": "is_finished",
+        "type": "core::bool"
+      },
+      {
+        "name": "winner",
+        "type": "core::integer::u8"
+      }
+    ]
+  },
+  {
     "type": "interface",
     "name": "pistols64::systems::actions::IActions",
     "items": [
@@ -210,6 +262,22 @@
         ],
         "outputs": [],
         "state_mutability": "external"
+      },
+      {
+        "type": "function",
+        "name": "get_challenge_results",
+        "inputs": [
+          {
+            "name": "duel_id",
+            "type": "core::integer::u128"
+          }
+        ],
+        "outputs": [
+          {
+            "type": "pistols64::models::challenge::ChallengeResults"
+          }
+        ],
+        "state_mutability": "view"
       },
       {
         "type": "function",
