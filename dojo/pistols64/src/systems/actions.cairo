@@ -12,7 +12,7 @@ trait IActions {
     fn live_long(world: @IWorldDispatcher) -> felt252;
 
     // calls to TOT
-    fn live_fast_die_jung(ref world: IWorldDispatcher ) -> ByteArray;
+    fn live_fast_die_jung(ref world: IWorldDispatcher, cmd: Array<ByteArray>) -> ByteArray;
 }
 
 
@@ -160,11 +160,11 @@ mod actions {
         }
 
         // call out to ToT via the interface
-        fn live_fast_die_jung(ref world: IWorldDispatcher) -> ByteArray {
+        fn live_fast_die_jung(ref world: IWorldDispatcher, cmd: Array<ByteArray>) -> ByteArray {
             WORLD(world);
             let tot: IToTActionsDispatcher = ToTInterfaceTrait::new().dispatcher();
             let command: Array<ByteArray> = array!["look", "around"];
-            (tot.command_shoggoth(23, command))
+            (tot.command_shoggoth(23, cmd))
         }
     }
 }
