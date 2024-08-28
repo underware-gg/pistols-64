@@ -3,12 +3,15 @@ use starknet::testing::{set_contract_address, set_transaction_hash};
 use dojo::world::{IWorldDispatcher, IWorldDispatcherTrait};
 
 use pistols64::utils::store::{Store, StoreTrait};
+use pistols64::systems::{
+    actions::{IActionsDispatcher, IActionsDispatcherTrait},
+};
 use pistols64::models::{
-    challenge::{Challenge},
-    round::{Round},
+    challenge::{Challenge, ChallengeTrait, ChallengeResults},
+    round::{Round, RoundTrait},
 };
 use pistols64::types::{
-    state::{ChallengeState},
+    state::{ChallengeState, ChallengeStateTrait},
 };
 use pistols64::types::cards::{
     paces::{PacesCard, PacesCardTrait},
@@ -73,6 +76,13 @@ fn test_duel_resolved() {
     tester::execute_move(sys.actions, OWNER(), duel_id, 1, NAME_B, [10,1].span());
     let challenge: Challenge = sys.store.get_challenge(duel_id);
     assert(challenge.state != ChallengeState::InProgress, 'state_move_b');
+    // check results
+    let results: ChallengeResults = sys.actions.get_challenge_results(duel_id);
+    assert(results.is_finished == true, 'results_is_finished');
+    assert(results.winner == challenge.winner, 'results_winner');
+    assert(results.duelist_name_a == NAME_A, 'results_NAME_A');
+    assert(results.duelist_name_b == NAME_B, 'results_NAME_B');
+    assert(results.message == MESSAGE, 'results_message');
 }
 
 

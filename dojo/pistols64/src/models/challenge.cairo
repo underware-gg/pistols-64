@@ -19,6 +19,20 @@ pub struct Challenge {
     pub winner: u8,                     // 0:draw, 1:duelist_a, 2:duelist_b
 }
 
+// for planetary interface
+#[derive(Copy, Drop, Serde)]
+struct ChallengeResults {
+    duel_id: u128,
+    duelist_name_a: felt252,
+    duelist_name_b: felt252,
+    message: felt252,
+    moves_a: Span<u8>,
+    moves_b: Span<u8>,
+    is_finished: bool,
+    winner: u8,     // 0 (draw), 1 (A wins), 2 (B wins)
+}
+
+
 
 //--------------------------
 // Traits
