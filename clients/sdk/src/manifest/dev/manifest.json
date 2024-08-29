@@ -1251,8 +1251,8 @@
     {
       "kind": "DojoContract",
       "address": "0x3cbe76182dc3c32fdb22240f2d6f4b444624c1b7865ea7951f9ff9d06987b5c",
-      "class_hash": "0x5093504caff4a4ab96c4c0ff7baf71358b23247cbaf86e45b1cd299e0caf670",
-      "original_class_hash": "0x5093504caff4a4ab96c4c0ff7baf71358b23247cbaf86e45b1cd299e0caf670",
+      "class_hash": "0x1234849fc224c6e0a094a2080dee9d6ee76a874fe3e9426e6006853bfa5829",
+      "original_class_hash": "0x1234849fc224c6e0a094a2080dee9d6ee76a874fe3e9426e6006853bfa5829",
       "base_class_hash": "0x2427dd10a58850ac9a5ca6ce04b7771b05330fd18f2e481831ad903b969e6b2",
       "abi": [
         {
@@ -1545,6 +1545,22 @@
                 }
               ],
               "state_mutability": "view"
+            },
+            {
+              "type": "function",
+              "name": "live_fast_die_jung",
+              "inputs": [
+                {
+                  "name": "cmd",
+                  "type": "core::array::Array::<core::byte_array::ByteArray>"
+                }
+              ],
+              "outputs": [
+                {
+                  "type": "core::byte_array::ByteArray"
+                }
+              ],
+              "state_mutability": "external"
             }
           ]
         },
