@@ -185,7 +185,11 @@ to call `TheOrugginTrail` from `Pistols64` with the command `look around`
 ./cmd_shoggoth path_to_pistols64_Scarb.toml look around
 ```
 
+Feel salty and want to start a fight? We got you.
 
-
+```sh
+./cmd_shoggoth path_to_pistols64_Scarb.toml fight the power
+```
+This command (like the other) calls into `TheOrugginTrail` from `Pistols64` and starts a fight.
 
   
