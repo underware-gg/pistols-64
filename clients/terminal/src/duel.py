@@ -1,6 +1,6 @@
 from libs import ascii_lib as ascii
 from libs import utils
-from render_duel import render_duel
+from duel_renderer import render_duel
 import subprocess
 import json
 

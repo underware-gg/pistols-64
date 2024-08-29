@@ -81,7 +81,7 @@ python --version
 
 ### Run the client
 
-Run **pistols-64** on localhost Katana:
+Start a **pistols-64** duel on localhost Katana:
 
 ```sh
 export STARKNET_RPC_URL=http://localhost:5050
@@ -89,14 +89,14 @@ export DOJO_ACCOUNT_ADDRESS=0xb3ff441a68610b30fd5e2abbf3a1548eb6ba6f3559f2862bf2
 export DOJO_PRIVATE_KEY=0x2bbf4f9fd0bbb2e60b0316c1fe0b76cf7a4d0198bd493ced9b8df2a3a24d68a
 export DOJO_MANIFEST_PATH=../../../dojo/pistols64/Scarb.toml
 cd clients/terminal/src
-python ./run.py
+python ./duel.py
 ```
 
 Just render some duel...
 
 ```sh
 cd clients/terminal/src
-python render_duel.py Ringo George 'Hallelujah my a**!' 9 10 10 1 Ringo
+python duel_renderer.py Ringo George 'Hallelujah my a**!' 9 10 10 1 Ringo
 ```
 
 Or play some test animations...
