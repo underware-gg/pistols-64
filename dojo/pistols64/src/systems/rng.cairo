@@ -61,6 +61,7 @@ impl RngImpl of RngTrait {
     fn throw_dice(ref self: Rng, salt: felt252, faces: u8) -> u8 {
         let new_seed: u128 = self.rng.reseed(self.seed, salt);
         let dice: u8 = ((new_seed % faces.into()) + 1).try_into().unwrap();
+// println!("new_seed {} dice {}", new_seed, dice);
         self.seed = new_seed;
         (dice)
     }

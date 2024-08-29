@@ -10,4 +10,5 @@ mod CONST {
 
     // crit chances
     const INITIAL_CHANCE: u8 = 50;
+    const INITIAL_DAMAGE: u8 = 3;
 }

@@ -31,4 +31,5 @@ mod tests {
     mod tester;
     mod test_challenge;
     mod test_duel;
+    mod mock_rng;
 }

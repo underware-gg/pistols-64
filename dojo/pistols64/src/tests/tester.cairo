@@ -10,7 +10,14 @@ mod tester {
 
     use pistols64::utils::store::{Store, StoreTrait};
     use pistols64::systems::actions::{actions, IActionsDispatcher, IActionsDispatcherTrait};
-    use pistols64::systems::rng::{rng, IRngDispatcher, IRngDispatcherTrait};
+    use pistols64::systems::rng::{rng};
+    use pistols64::tests::mock_rng::{
+        rng as mock_rng,
+        IRngDispatcher,
+        IRngDispatcherTrait,
+        salt_value, SaltValue,
+    };
+
     use pistols64::models::{
         challenge::{challenge, Challenge},
         round::{round, Round},
@@ -30,8 +37,8 @@ mod tester {
     const INITIAL_TIMESTAMP: u64 = 0x100000000;
     const INITIAL_STEP: u64 = 0x10;
 
-    mod flags {
-        const FLAG: u8 = 0b000001;
+    mod FLAGS {
+        const MOCK_RNG: u8  = 0b000001;
     }
 
     #[derive(Copy, Drop)]
@@ -55,7 +62,10 @@ mod tester {
         let mut models = array![
             challenge::TEST_CLASS_HASH,
             round::TEST_CLASS_HASH,
+            salt_value::TEST_CLASS_HASH,
         ];
+
+        let deploy_mock_rng = (flags & FLAGS::MOCK_RNG) != 0;
 
         // setup testing
         testing::set_block_number(1);
@@ -76,7 +86,8 @@ mod tester {
         };
         let rng = IRngDispatcher{ contract_address:
             {
-                let address = deploy_system(world, 'rng', rng::TEST_CLASS_HASH);
+                let class_hash = if (deploy_mock_rng) {mock_rng::TEST_CLASS_HASH} else {rng::TEST_CLASS_HASH};
+                let address = deploy_system(world, 'rng', class_hash);
                 world.grant_owner(dojo::utils::bytearray_hash(@"pistols64"), address);
                 (address)
             }
