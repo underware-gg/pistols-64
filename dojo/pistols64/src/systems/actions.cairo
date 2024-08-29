@@ -132,6 +132,8 @@ mod actions {
             }
 
             // save round
+// println!("Shot A {} / {}", round.shot_a.dice_crit, round.shot_a.final_chances);
+// println!("Shot B {} / {}", round.shot_b.dice_crit, round.shot_b.final_chances);
             store.set_round(round);
         }
 
