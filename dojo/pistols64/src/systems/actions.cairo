@@ -163,7 +163,7 @@ mod actions {
         fn live_fast_die_jung(ref world: IWorldDispatcher, cmd: Array<ByteArray>) -> ByteArray {
             WORLD(world);
             let tot: IToTActionsDispatcher = ToTInterfaceTrait::new().dispatcher();
-            let command: Array<ByteArray> = array!["look", "around"];
+            // println!("cmd: {:?}", cmd);
             (tot.command_shoggoth(23, cmd))
         }
     }
