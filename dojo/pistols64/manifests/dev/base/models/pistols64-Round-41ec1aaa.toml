@@ -1,6 +1,6 @@
 kind = "DojoModel"
-class_hash = "0x2eb9105740aa5846158d225fb1aeb69ed7f108355aae80b21ea077025989850"
-original_class_hash = "0x2eb9105740aa5846158d225fb1aeb69ed7f108355aae80b21ea077025989850"
+class_hash = "0x6f1679e224b9a9b9e07f4bdbb86fd451e3ea2f2e05894c047bd7c01d4e25452"
+original_class_hash = "0x6f1679e224b9a9b9e07f4bdbb86fd451e3ea2f2e05894c047bd7c01d4e25452"
 abi = "manifests/dev/base/abis/models/pistols64-Round-41ec1aaa.json"
 tag = "pistols64-Round"
 manifest_name = "pistols64-Round-41ec1aaa"

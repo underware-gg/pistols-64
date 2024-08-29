@@ -497,7 +497,7 @@
         "type": "pistols64::types::cards::blades::BladesCard"
       },
       {
-        "name": "initial_chances",
+        "name": "initial_health",
         "type": "core::integer::u8"
       },
       {
@@ -505,11 +505,11 @@
         "type": "core::integer::u8"
       },
       {
-        "name": "initial_health",
+        "name": "initial_chances",
         "type": "core::integer::u8"
       },
       {
-        "name": "final_chances",
+        "name": "final_health",
         "type": "core::integer::u8"
       },
       {
@@ -517,7 +517,7 @@
         "type": "core::integer::u8"
       },
       {
-        "name": "final_health",
+        "name": "final_chances",
         "type": "core::integer::u8"
       },
       {
