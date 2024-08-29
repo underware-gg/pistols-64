@@ -181,7 +181,7 @@ cd TheOrugginTrail-Dojo
 ## Interop P64 -> TOT
 You can send commands into `TheOrugginTrail` from `Pistols64` from the script below.
 
-*EG* To call `TheOrugginTrail` from `Pistols64` with the command `look around`
+__EG__ To call `TheOrugginTrail` from `Pistols64` with the command `look around`
 
 ```sh
 ./cmd_shoggoth path_to_pistols64_Scarb.toml look around
