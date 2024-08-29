@@ -34,7 +34,7 @@ How does it work?
 * Planetary is a Dojo world deployed on Katana/Slot/Starknet
 * It provides the `planetary_interface` crate for world discovery.
 * Worlds need to `register()` to Planetary to be discoverable, usually at `dojo_init()`.
-* Any world can dicover other worlds from the interface.
+* Any world can discover other worlds from the interface.
 * Discoverable worlds need their interface to be included in the Planetary interface.
 
 Things to do and consider for future developments:
@@ -166,4 +166,26 @@ cd dojo/pistols64
 ./run_torii
 ```
 
+## 🚀 TheOrugginTrail Interop
 
+This assumes that `planetary` and `pistols64` are deployed to the same katana as explained above.
+
+```sh
+git clone --depth 1 --branch dojo_game_jam https://github.com/ArchetypalTech/TheOrugginTrail-DoJo.git 
+```
+
+```sh
+cd TheOrugginTrail-Dojo
+./migrate
+```
+
+to call `TheOrugginTrail` from `Pistols64` with the command `look around`
+
+```sh
+./cmd_shoggoth path_to_pistols64_Scarb.toml look around
+```
+
+
+
+
+  
