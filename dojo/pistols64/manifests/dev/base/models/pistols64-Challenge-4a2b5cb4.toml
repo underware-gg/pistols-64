@@ -3,7 +3,6 @@ class_hash = "0x39380a0b122e24f3eb936b3501a2fd7938902ff7be0a01c160b872ee8a81e40"
 original_class_hash = "0x39380a0b122e24f3eb936b3501a2fd7938902ff7be0a01c160b872ee8a81e40"
 abi = "manifests/dev/base/abis/models/pistols64-Challenge-4a2b5cb4.json"
 tag = "pistols64-Challenge"
-qualified_path = "pistols64::models::challenge::challenge"
 manifest_name = "pistols64-Challenge-4a2b5cb4"
 
 [[members]]

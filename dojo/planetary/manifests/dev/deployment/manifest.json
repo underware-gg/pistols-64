@@ -2231,7 +2231,6 @@
         }
       ],
       "tag": "planetary-Planet",
-      "qualified_path": "planetary::models::planet::planet",
       "manifest_name": "planetary-Planet-1feffb25"
     }
   ]

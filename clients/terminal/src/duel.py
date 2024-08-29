@@ -1,6 +1,6 @@
 from libs import ascii_lib as ascii
 from libs import utils
-from render_duel import render_duel
+from duel_renderer import render_duel
 import subprocess
 import json
 
@@ -26,7 +26,19 @@ def tavern():
     print("__|____|____|___________|__")
     print()
 
-
+#
+# sozo execute --help
+#
+# The calldata to be passed to the system.
+# Comma separated values e.g., 0x12345,128,u256:9999999999.
+# Sozo supports some prefixes that you can use to automatically parse some types.
+# The supported prefixes are:
+# - u256: A 256-bit unsigned integer.
+# - sstr: A cairo short string.
+# - str: A cairo string (ByteArray).
+# - int: A signed integer.
+# - no prefix: A cairo felt or any type that fit into one felt.
+#
 def sozo_execute(function, calldata, readCall=False):
   try:
     command = f"sozo execute pistols64-actions {function} --calldata {calldata} --wait --receipt"
@@ -71,7 +83,7 @@ def sozo_call(function, calldata):
 #
 if __name__ == '__main__':
   # draw the tavern
-  # ascii.clear_screen()
+  ascii.clear_screen()
   smoke()
   tavern()
 
@@ -87,21 +99,21 @@ if __name__ == '__main__':
   # duelist A moves...
   paces_a = input(f"{name_a}'s paces to shoot: ")
   dodge_a = input(f"{name_a}'s paces to dodge: ")
-  sozo_execute("move", f"{duel_id},0x1,{utils.str_to_hex(name_a)},0x2,{paces_a},{dodge_a}")
+  sozo_execute("move", f"{duel_id},0x1,sstr:\"{name_a}\",0x2,{paces_a},{dodge_a}")
 
   # duelist B moves...
   paces_b = input(f"{name_b}'s paces to shoot: ")
   dodge_b = input(f"{name_b}'s paces to dodge: ")
-  sozo_execute("move", f"{duel_id},0x1,{utils.str_to_hex(name_b)},0x2,{paces_b},{dodge_b}")
+  sozo_execute("move", f"{duel_id},0x1,sstr:\"{name_b}\",0x2,{paces_b},{dodge_b}")
 
   # get the results
   # ChallengeResults
   # [ 0xce6788dee1a083c26cd2a32c69285989 0x3234323335 0x3433343334333232 0x3233343233 0x2 0x2 0x3 0x2 0x5 0x6 0x1 0x0 ]
   result = sozo_call("get_challenge_results", f"{duel_id}")
   result_duel_id = utils.hex_to_number(result[0])
-  result_name_a = utils.hex_to_number(result[1])
-  result_name_b = utils.hex_to_number(result[2])
-  result_message = utils.hex_to_number(result[3])
+  result_name_a = utils.hex_to_str(result[1])
+  result_name_b = utils.hex_to_str(result[2])
+  result_message = utils.hex_to_str(result[3])
   # result_moves_a_len = utils.hex_to_number(result[4])
   result_paces_a = utils.hex_to_number(result[5])
   result_dodge_a = utils.hex_to_number(result[6])
@@ -109,6 +121,6 @@ if __name__ == '__main__':
   result_paces_b = utils.hex_to_number(result[8])
   result_dodge_b = utils.hex_to_number(result[9])
   result_finished = True if utils.hex_to_number(result[10]) == 1 else False
-  result_winner = utils.hex_to_number(result[11])
+  result_winner = utils.hex_to_str(result[11])
   result_winner_name = result_name_a if result_winner == 1 else result_name_b if result_winner == 2 else None
-  render_duel(name_a, name_b, message, paces_a, dodge_a, paces_b, dodge_b, result_winner_name)
+  render_duel(name_a, name_b, message, result_paces_a, result_dodge_a, result_paces_b, result_dodge_b, result_winner_name)
