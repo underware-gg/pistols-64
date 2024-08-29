@@ -197,12 +197,12 @@ This command calls into `TheOrugginTrail` from `Pistols64` and starts a fight by
 
 ## Interop TOT -> P64
 
-Assuming you are in the `TheOrugginTrail` directory, you can call `Pistols64` and start a fight with the script below. This calls into `Pistols64` from `TheOrugginTrail`.
+Assuming you are in the `TheOrugginTrail` directory, you can call `Pistols64` from `TheOrugginTrail` with the script below.
 
 ```sh
 ./start_fight
 ```
-it wraps a command string "fight the man" and calls TOT with it.
+it wraps a command string "fight the man" which triggers the call from `TheOrugginTrail` world to the `Pistols64` world.
 
 
   
