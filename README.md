@@ -190,6 +190,14 @@ Feel salty and want to start a fight? We got you.
 ```sh
 ./cmd_shoggoth path_to_pistols64_Scarb.toml fight the power
 ```
-This command (like the other) calls into `TheOrugginTrail` from `Pistols64` and starts a fight.
+This command calls into `TheOrugginTrail` from `Pistols64` and starts a fight by calling back into `Pistols64` from `TheOrugginTrail`.
+
+### Calling Pistols64 from TheOrugginTrail
+
+Assuming you are in the `TheOrugginTrail` directory, you can call `Pistols64` and start a fight with the script below. This calls into `Pistols64` from `TheOrugginTrail`.
+
+```sh
+./start_fight
+```
 
   
