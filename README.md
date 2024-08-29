@@ -202,7 +202,7 @@ Assuming you are in the `TheOrugginTrail` directory, you can call `Pistols64` fr
 ```sh
 ./start_fight
 ```
-it wraps a command string "fight the man" which triggers the call from `TheOrugginTrail` world to the `Pistols64` world.
+It wraps a command string "fight the man" which triggers the call from `TheOrugginTrail` world to the `Pistols64` world.
 
 
   
