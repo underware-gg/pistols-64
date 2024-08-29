@@ -3,6 +3,19 @@
 
 Experimental shell terminal client for Pistols64.
 
+```
+                ,)
+                (,
+                ,)
+     __________| |____
+    /                 \
+   /   The             \
+  /   Fool & Flintlock  \
+  |            Tavern   |
+  |     ____     ___    |
+  |    |    |   |___|   |
+__|____|____|___________|__
+```
 
 ## Playing with sozo
 
@@ -40,19 +53,20 @@ sozo execute pistols64-actions create_challenge --calldata $NAME_A,$NAME_B,$MESS
 
 ## Shell Terminal Client
 
-From here on you're gonna need Python...
+From here on you're gonna need **Python**...
 
 ### macOS / Linux
 
-**If you  don't have Python**, the easiest way to install and maintain it is using `pyenv`.
+If you don't have Python, the easiest way to install and maintain it is using `pyenv`.
 
 ```sh
 brew install pyenv
 pyenv install 3.12
 ```
 
-Needs to be activated before use.
-Run this, or to add this to your shell config file (`.zshrc` on your home).
+Needs to be activated before use, by running the following command.
+Or better, paste at the end of your shell config file (`.zshrc` on your home).
+Python will be activated automatically every time you open a new terminal.
 
 ```sh
 eval "$(pyenv init -)"
@@ -67,20 +81,31 @@ python --version
 
 ### Run the client
 
-On localhost Katana:
+Run **pistols-64** on localhost Katana:
 
 ```sh
-cd clients/terminal
 export STARKNET_RPC_URL=http://localhost:5050
 export DOJO_ACCOUNT_ADDRESS=0xb3ff441a68610b30fd5e2abbf3a1548eb6ba6f3559f2862bf2dc757e5828ca
 export DOJO_PRIVATE_KEY=0x2bbf4f9fd0bbb2e60b0316c1fe0b76cf7a4d0198bd493ced9b8df2a3a24d68a
 export DOJO_MANIFEST_PATH=../../../dojo/pistols64/Scarb.toml
+cd clients/terminal/src
 python ./run.py
 ```
 
-render some random duels:
+Just render some duel...
+
+```sh
+cd clients/terminal/src
+python render_duel.py Ringo George 'Hallelujah my a**!' 9 10 10 1 Ringo
+```
+
+Or play some test animations...
 
 ```sh
 cd clients/terminal
-python render_duel.py Ringo George 'Hallelujah my a**!' 9 10 10 1 Ringo
+python ./anim/tavern.py
+python ./anim/walk.py
+python ./anim/flip.py
+python ./anim/dance.py
+python ./anim/death.py
 ```

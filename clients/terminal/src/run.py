@@ -26,7 +26,19 @@ def tavern():
     print("__|____|____|___________|__")
     print()
 
-
+#
+# sozo execute --help
+#
+# The calldata to be passed to the system.
+# Comma separated values e.g., 0x12345,128,u256:9999999999.
+# Sozo supports some prefixes that you can use to automatically parse some types.
+# The supported prefixes are:
+# - u256: A 256-bit unsigned integer.
+# - sstr: A cairo short string.
+# - str: A cairo string (ByteArray).
+# - int: A signed integer.
+# - no prefix: A cairo felt or any type that fit into one felt.
+#
 def sozo_execute(function, calldata, readCall=False):
   try:
     command = f"sozo execute pistols64-actions {function} --calldata {calldata} --wait --receipt"
@@ -87,12 +99,12 @@ if __name__ == '__main__':
   # duelist A moves...
   paces_a = input(f"{name_a}'s paces to shoot: ")
   dodge_a = input(f"{name_a}'s paces to dodge: ")
-  sozo_execute("move", f"{duel_id},0x1,{utils.str_to_hex(name_a)},0x2,{paces_a},{dodge_a}")
+  sozo_execute("move", f"{duel_id},0x1,sstr:\"{name_a}\",0x2,{paces_a},{dodge_a}")
 
   # duelist B moves...
   paces_b = input(f"{name_b}'s paces to shoot: ")
   dodge_b = input(f"{name_b}'s paces to dodge: ")
-  sozo_execute("move", f"{duel_id},0x1,{utils.str_to_hex(name_b)},0x2,{paces_b},{dodge_b}")
+  sozo_execute("move", f"{duel_id},0x1,sstr:\"{name_b}\",0x2,{paces_b},{dodge_b}")
 
   # get the results
   # ChallengeResults

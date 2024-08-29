@@ -68,7 +68,6 @@ while True:
   step = (frameCount % (len(frames)*6))
   for line in frame:
     print(line)
-  print(f'step: {step/2}')
   # wait
   time.sleep(1.0 / frameRate)
 
