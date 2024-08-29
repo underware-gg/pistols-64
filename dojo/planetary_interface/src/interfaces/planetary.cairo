@@ -23,7 +23,6 @@ impl PlanetaryInterfaceImpl of PlanetaryInterfaceTrait {
     fn WORLD_CONTRACT() -> ContractAddress {
         (starknet::contract_address_const::<0x783e2bc93ef51a73a6af04907e765f83e20c68e58a2b55b4f0c4a397c51b5b5>())
     }
-
     //
     // create a new interface
     fn new() -> PlanetaryInterface {

@@ -24,8 +24,8 @@ manifest_name = "dojo-base"
 [[contracts]]
 kind = "DojoContract"
 address = "0x3cbe76182dc3c32fdb22240f2d6f4b444624c1b7865ea7951f9ff9d06987b5c"
-class_hash = "0x5093504caff4a4ab96c4c0ff7baf71358b23247cbaf86e45b1cd299e0caf670"
-original_class_hash = "0x5093504caff4a4ab96c4c0ff7baf71358b23247cbaf86e45b1cd299e0caf670"
+class_hash = "0x62b02de0e30b4ef4b58cd962f9327b4095f3327e536ac2cade059012b91e239"
+original_class_hash = "0x62b02de0e30b4ef4b58cd962f9327b4095f3327e536ac2cade059012b91e239"
 base_class_hash = "0x2427dd10a58850ac9a5ca6ce04b7771b05330fd18f2e481831ad903b969e6b2"
 abi = "manifests/dev/deployment/abis/contracts/pistols64-actions-67633088.json"
 reads = []
@@ -58,6 +58,7 @@ class_hash = "0x39380a0b122e24f3eb936b3501a2fd7938902ff7be0a01c160b872ee8a81e40"
 original_class_hash = "0x39380a0b122e24f3eb936b3501a2fd7938902ff7be0a01c160b872ee8a81e40"
 abi = "manifests/dev/deployment/abis/models/pistols64-Challenge-4a2b5cb4.json"
 tag = "pistols64-Challenge"
+qualified_path = "pistols64::models::challenge::challenge"
 manifest_name = "pistols64-Challenge-4a2b5cb4"
 
 [[models.members]]
@@ -106,6 +107,7 @@ class_hash = "0x2eb9105740aa5846158d225fb1aeb69ed7f108355aae80b21ea077025989850"
 original_class_hash = "0x2eb9105740aa5846158d225fb1aeb69ed7f108355aae80b21ea077025989850"
 abi = "manifests/dev/deployment/abis/models/pistols64-Round-41ec1aaa.json"
 tag = "pistols64-Round"
+qualified_path = "pistols64::models::round::round"
 manifest_name = "pistols64-Round-41ec1aaa"
 
 [[models.members]]

@@ -4,6 +4,7 @@ mod interfaces {
     // public planets
     mod pistols64;
     mod vulcan; // test planet
+    mod tot;
 }
 
 mod systems {

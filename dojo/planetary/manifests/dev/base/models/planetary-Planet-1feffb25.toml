@@ -3,6 +3,7 @@ class_hash = "0x1a1f3caf725b56b1d7ac1abab41a86b93c63d989d7cf7744bc2f80d45a93eda"
 original_class_hash = "0x1a1f3caf725b56b1d7ac1abab41a86b93c63d989d7cf7744bc2f80d45a93eda"
 abi = "manifests/dev/base/abis/models/planetary-Planet-1feffb25.json"
 tag = "planetary-Planet"
+qualified_path = "planetary::models::planet::planet"
 manifest_name = "planetary-Planet-1feffb25"
 
 [[members]]

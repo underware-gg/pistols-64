@@ -289,6 +289,22 @@
           }
         ],
         "state_mutability": "view"
+      },
+      {
+        "type": "function",
+        "name": "live_fast_die_jung",
+        "inputs": [
+          {
+            "name": "cmd",
+            "type": "core::array::Array::<core::byte_array::ByteArray>"
+          }
+        ],
+        "outputs": [
+          {
+            "type": "core::byte_array::ByteArray"
+          }
+        ],
+        "state_mutability": "external"
       }
     ]
   },
