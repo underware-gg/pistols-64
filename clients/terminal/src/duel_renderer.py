@@ -321,9 +321,9 @@ def render_duel(name_a, name_b, message, paces_a, dodge_a, paces_b, dodge_b, nam
     # render.do_background()
     animate()
     render.render()
-    draw_text(f" {name_a} xxx {name_b} ")
-    draw_text(f" \"{message}\" ")
-    draw_text(f" >> {currentPaces} << paces... ")
+    draw_text(f" [ {name_a} vs. {name_b} ] ")
+    draw_text(f" [ \"{message}\" ] ")
+    draw_text(f" [ {currentPaces} paces... ] ")
     if (len(animations) == 0):
       draw_text(f" + # + # $ {name_winner} wins! + # + # + ")
     render.wait()

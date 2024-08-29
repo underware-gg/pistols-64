@@ -81,15 +81,27 @@ python --version
 
 ### Run the client
 
-Start a **pistols-64** duel on localhost Katana:
+Configure sozo for localhost Katana, or another chain:
 
 ```sh
 export STARKNET_RPC_URL=http://localhost:5050
 export DOJO_ACCOUNT_ADDRESS=0xb3ff441a68610b30fd5e2abbf3a1548eb6ba6f3559f2862bf2dc757e5828ca
 export DOJO_PRIVATE_KEY=0x2bbf4f9fd0bbb2e60b0316c1fe0b76cf7a4d0198bd493ced9b8df2a3a24d68a
 export DOJO_MANIFEST_PATH=../../../dojo/pistols64/Scarb.toml
+```
+
+Start a duel from the **pistols64** contract (needs planetary and pistols64 [deployed](/README.md))
+
+```sh
 cd clients/terminal/src
 python ./duel.py
+```
+
+Start story mode with **TheOrugginTrail** contract (needs planetary, pistols64 and TheOrugginTrail [deployed](/README.md))
+
+```sh
+cd clients/terminal/src
+python ./shoggoth.py
 ```
 
 Just render some duel...
