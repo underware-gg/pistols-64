@@ -74,10 +74,10 @@ fn test_duel_resolved_a() {
     let sys: Systems = tester::setup_world(FLAGS::MOCK_RNG);
     sys.rng.set_salts(['shoot_a', 'shoot_b'].span(), [1, 100].span());
     let duel_id: u128 = tester::execute_create_challenge(sys.actions, OWNER(), NAME_A, NAME_B, MESSAGE);
-    tester::execute_move(sys.actions, OWNER(), duel_id, 1, NAME_A, [5,10].span());
+    tester::execute_move(sys.actions, OWNER(), duel_id, 1, NAME_A, [6, 1].span());
     let challenge: Challenge = sys.store.get_challenge(duel_id);
     assert(challenge.state == ChallengeState::InProgress, 'state_move_a');
-    tester::execute_move(sys.actions, OWNER(), duel_id, 1, NAME_B, [5,10].span());
+    tester::execute_move(sys.actions, OWNER(), duel_id, 1, NAME_B, [5, 1].span());
     let challenge: Challenge = sys.store.get_challenge(duel_id);
     assert(challenge.state == ChallengeState::Resolved, 'state_final');
     assert(challenge.winner == 1, 'winner');
@@ -99,10 +99,10 @@ fn test_duel_resolved_b() {
     let sys: Systems = tester::setup_world(FLAGS::MOCK_RNG);
     sys.rng.set_salts(['shoot_a', 'shoot_b'].span(), [100, 1].span());
     let duel_id: u128 = tester::execute_create_challenge(sys.actions, OWNER(), NAME_A, NAME_B, MESSAGE);
-    tester::execute_move(sys.actions, OWNER(), duel_id, 1, NAME_A, [5,10].span());
+    tester::execute_move(sys.actions, OWNER(), duel_id, 1, NAME_A, [5, 1].span());
     let challenge: Challenge = sys.store.get_challenge(duel_id);
     assert(challenge.state == ChallengeState::InProgress, 'state_move_a');
-    tester::execute_move(sys.actions, OWNER(), duel_id, 1, NAME_B, [5,10].span());
+    tester::execute_move(sys.actions, OWNER(), duel_id, 1, NAME_B, [6, 1].span());
     let challenge: Challenge = sys.store.get_challenge(duel_id);
     assert(challenge.state == ChallengeState::Resolved, 'state_final');
     assert(challenge.winner == 2, 'winner');

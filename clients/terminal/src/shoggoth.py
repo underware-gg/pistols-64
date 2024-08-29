@@ -115,6 +115,11 @@ def extract_tot_Output_from_events(events):
 #
 if __name__ == '__main__':
 
+  # result = sozo_execute("live_fast_die_jung", f"2,str:\"fight\",str:\"shoggoth\"")
+  # output = extract_tot_Output_from_events(result["events"])
+  # print(output)
+  # exit()
+
   ascii.clear_screen()
   # smoke()
   deli()
@@ -166,6 +171,8 @@ if __name__ == '__main__':
   result_paces_b = utils.hex_to_number(result[8])
   result_dodge_b = utils.hex_to_number(result[9])
   result_finished = True if utils.hex_to_number(result[10]) == 1 else False
-  result_winner = utils.hex_to_str(result[11])
+  result_winner = utils.hex_to_number(result[11])
   result_winner_name = result_name_a if result_winner == 1 else result_name_b if result_winner == 2 else None
+  # print("winner:", result_winner, result_winner_name)
+  # input("continue...")
   render_duel(result_name_a, result_name_b, result_message, result_paces_a, result_dodge_a, result_paces_b, result_dodge_b, result_winner_name)

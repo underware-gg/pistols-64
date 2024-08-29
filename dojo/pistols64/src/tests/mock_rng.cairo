@@ -37,7 +37,7 @@ mod rng {
             let new_seed: felt252 = pedersen(seed.into(), salt);
             let salt_value: SaltValue = SaltValueStore::get(world, salt);
             if (salt_value.exists) {
-                println!("-- get_salt {} {} {}", salt, salt_value.exists, salt_value.value);
+                // println!("-- get_salt {} {} {}", salt, salt_value.exists, salt_value.value);
                 return salt_value.value;
             }
             (felt_to_u128(new_seed))
