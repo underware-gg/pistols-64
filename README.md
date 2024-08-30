@@ -166,7 +166,8 @@ cd dojo/pistols64
 ./run_torii
 ```
 
-## 🚀 TheOrugginTrail Interop
+
+## 🐙 TheOrugginTrail Interop
 
 This assumes that `planetary` and `pistols64` are deployed to the same katana as explained above.
 
