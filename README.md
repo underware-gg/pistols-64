@@ -180,14 +180,31 @@ git clone --depth 1 --branch dojo_game_jam https://github.com/ArchetypalTech/The
 cd TheOrugginTrail-Dojo
 ./migrate
 ```
+## Interop P64 -> TOT
+You can send commands into `TheOrugginTrail` from `Pistols64` from the script below.
 
-to call `TheOrugginTrail` from `Pistols64` with the command `look around`
+__eg__ To call `TheOrugginTrail` from `Pistols64` with the command `look around`
 
 ```sh
 ./cmd_shoggoth path_to_pistols64_Scarb.toml look around
 ```
 
+Feel salty and want to start a fight? We got you.
 
+```sh
+./cmd_shoggoth path_to_pistols64_Scarb.toml fight the power
+```
+
+This command calls into `TheOrugginTrail` from `Pistols64` and starts a fight by calling back into `Pistols64` from `TheOrugginTrail`.
+
+## Interop TOT -> P64
+
+Assuming you are in the `TheOrugginTrail` directory, you can call `Pistols64` from `TheOrugginTrail` with the script below.
+
+```sh
+./start_fight
+```
+It wraps a command string "fight the man" which triggers the call from `TheOrugginTrail` world to the `Pistols64` world.
 
 
   

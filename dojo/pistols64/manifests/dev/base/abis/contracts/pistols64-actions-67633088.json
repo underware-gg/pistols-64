@@ -301,7 +301,7 @@
         ],
         "outputs": [
           {
-            "type": "core::byte_array::ByteArray"
+            "type": "core::array::Array::<core::byte_array::ByteArray>"
           }
         ],
         "state_mutability": "external"
