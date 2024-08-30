@@ -208,3 +208,6 @@ It wraps a command string "fight the man" which triggers the call from `TheOrugg
 
 
   
+## 💾 Run the shell terminal client
+
+See [clients/terminal/README.md](clients/terminal/README.md).
