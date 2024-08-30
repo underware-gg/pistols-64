@@ -37,13 +37,13 @@ struct Shot {
     card_tactics: TacticsCard,
     card_blades: BladesCard,
     // initial state
-    initial_chances: u8,    // 0-100
-    initial_damage: u8,     // CONST::INITIAL_CHANCE
     initial_health: u8,     // CONST::FULL_HEALTH
+    initial_damage: u8,     // CONST::INITIAL_CHANCE
+    initial_chances: u8,    // 0-100
     // final states
-    final_chances: u8,      // 0-100
-    final_damage: u8,
     final_health: u8,
+    final_damage: u8,
+    final_chances: u8,      // 0-100
     // results
     dice_crit: u8,          // 0-100
     win: u8,                // won the round?
@@ -68,9 +68,12 @@ impl ShotImpl of ShotTrait {
         assert(self.card_dodge != PacesCard::Null, Errors::InvalidDodge);
         self.card_tactics = if (moves.len() >= 3) {(*moves[2]).into()} else {0_u8.into()};
         self.card_blades =  if (moves.len() >= 4) {(*moves[3]).into()} else {0_u8.into()};
-        self.initial_chances = CONST::INITIAL_CHANCE;
         self.initial_health = CONST::FULL_HEALTH;
-        self.final_health = CONST::FULL_HEALTH;         // unless die!
+        self.initial_damage = CONST::INITIAL_DAMAGE;
+        self.initial_chances = CONST::INITIAL_CHANCE;
+        self.final_health = self.initial_health;
+        self.final_damage = self.initial_damage;
+        self.final_chances = self.initial_chances;
     }
 }
 

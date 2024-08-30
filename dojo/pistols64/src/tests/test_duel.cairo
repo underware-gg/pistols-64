@@ -21,7 +21,10 @@ use pistols64::types::cards::{
 
 use pistols64::tests::tester::{
     tester,
-    tester::{Systems, ZERO, OWNER, OTHER}
+    tester::{
+        Systems, IRngDispatcher, IRngDispatcherTrait,
+        FLAGS, ZERO, OWNER, OTHER,
+    }
 };
 
 const NAME_A: felt252 = '0000';
@@ -63,19 +66,25 @@ fn test_duel_draw() {
     assert(challenge.state == ChallengeState::InProgress, 'state_move_a');
     tester::execute_move(sys.actions, OWNER(), duel_id, 1, NAME_B, [1,1].span());
     let challenge: Challenge = sys.store.get_challenge(duel_id);
-    assert(challenge.state == ChallengeState::Draw, 'state_move_b');
+    assert(challenge.state == ChallengeState::Draw, 'state_final');
 }
 
 #[test]
-fn test_duel_resolved() {
-    let sys: Systems = tester::setup_world(0);
+fn test_duel_resolved_a() {
+    let sys: Systems = tester::setup_world(FLAGS::MOCK_RNG);
+    sys.rng.set_salts(['shoot_a', 'shoot_b'].span(), [1, 100].span());
     let duel_id: u128 = tester::execute_create_challenge(sys.actions, OWNER(), NAME_A, NAME_B, MESSAGE);
-    tester::execute_move(sys.actions, OWNER(), duel_id, 1, NAME_A, [1,1].span());
+    tester::execute_move(sys.actions, OWNER(), duel_id, 1, NAME_A, [6, 1].span());
     let challenge: Challenge = sys.store.get_challenge(duel_id);
     assert(challenge.state == ChallengeState::InProgress, 'state_move_a');
-    tester::execute_move(sys.actions, OWNER(), duel_id, 1, NAME_B, [10,1].span());
+    tester::execute_move(sys.actions, OWNER(), duel_id, 1, NAME_B, [5, 1].span());
     let challenge: Challenge = sys.store.get_challenge(duel_id);
-    assert(challenge.state != ChallengeState::InProgress, 'state_move_b');
+    assert(challenge.state == ChallengeState::Resolved, 'state_final');
+    assert(challenge.winner == 1, 'winner');
+    // validate MOCK_RNG
+    let round: Round = sys.store.get_round(duel_id, 1);
+    assert(round.shot_a.dice_crit == 1, 'dice_a');
+    assert(round.shot_b.dice_crit == 100, 'dice_b');
     // check results
     let results: ChallengeResults = sys.actions.get_challenge_results(duel_id);
     assert(results.is_finished == true, 'results_is_finished');
@@ -84,6 +93,34 @@ fn test_duel_resolved() {
     assert(results.duelist_name_b == NAME_B, 'results_NAME_B');
     assert(results.message == MESSAGE, 'results_message');
 }
+
+#[test]
+fn test_duel_resolved_b() {
+    let sys: Systems = tester::setup_world(FLAGS::MOCK_RNG);
+    sys.rng.set_salts(['shoot_a', 'shoot_b'].span(), [100, 1].span());
+    let duel_id: u128 = tester::execute_create_challenge(sys.actions, OWNER(), NAME_A, NAME_B, MESSAGE);
+    tester::execute_move(sys.actions, OWNER(), duel_id, 1, NAME_A, [5, 1].span());
+    let challenge: Challenge = sys.store.get_challenge(duel_id);
+    assert(challenge.state == ChallengeState::InProgress, 'state_move_a');
+    tester::execute_move(sys.actions, OWNER(), duel_id, 1, NAME_B, [6, 1].span());
+    let challenge: Challenge = sys.store.get_challenge(duel_id);
+    assert(challenge.state == ChallengeState::Resolved, 'state_final');
+    assert(challenge.winner == 2, 'winner');
+    // validate MOCK_RNG
+    let round: Round = sys.store.get_round(duel_id, 1);
+    assert(round.shot_a.dice_crit == 100, 'dice_a');
+    assert(round.shot_b.dice_crit == 1, 'dice_b');
+    // check results
+    let results: ChallengeResults = sys.actions.get_challenge_results(duel_id);
+    assert(results.is_finished == true, 'results_is_finished');
+    assert(results.winner == challenge.winner, 'results_winner');
+    assert(results.duelist_name_a == NAME_A, 'results_NAME_A');
+    assert(results.duelist_name_b == NAME_B, 'results_NAME_B');
+    assert(results.message == MESSAGE, 'results_message');
+}
+
+// TODO: dodge + get shot
+
 
 
 

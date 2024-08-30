@@ -130,6 +130,7 @@ type type_CONST = {
   DOUBLE_DAMAGE: number, // cairo: u8
   SINGLE_DAMAGE: number, // cairo: u8
   INITIAL_CHANCE: number, // cairo: u8
+  INITIAL_DAMAGE: number, // cairo: u8
 };
 export const CONST: type_CONST = {
   ROUND_COUNT: 1,
@@ -137,6 +138,7 @@ export const CONST: type_CONST = {
   DOUBLE_DAMAGE: 2,
   SINGLE_DAMAGE: 1,
   INITIAL_CHANCE: 50,
+  INITIAL_DAMAGE: 3,
 };
 
 // from: ../../dojo/pistols64/src/types/state.cairo
