@@ -12,20 +12,20 @@ For the **Dojo Game Jam @ Dojo Sensei Residency NYC 2024**
 
 ### Dojo Contracts
 
-* `/dojo/planetary`: world catalog
-* `/dojo/planetary_interface`: interface for **planetary** (crate), imported by worlds to connet to each other
+* `/dojo/planetary`: world catalogue
+* `/dojo/planetary_interface`: interface for **planetary** (crate), imported by worlds to connect to each other
 * `/dojo/pistols64`: mini-pistols game contracts
 
 ### Clients
 
-* `/clients/sdk`: generated files from the `pistols64` contract (manifest, typescript, graphql)
-* `/clients/terminal`: Python shell termimal client
+* `/clients/sdk`: generated files from the `pistols64` contract (manifest, typescript, GraphQL)
+* `/clients/terminal`: Python shell terminal client
 * [TheOrugginTrail](https://github.com/ArchetypalTech/TheOrugginTrail-DoJo): text adventure client
 
 
 ## 🌎 The Planetary System 
 
-**Planetary** is a Dojo world that connect other Dojo worlds.
+**Planetary** is a Dojo world that connects other Dojo worlds.
 
 > ⚠️ This is a proof of concept, not secure, not meant for production.
 
@@ -39,9 +39,11 @@ How does it work?
 
 Things to do and consider for future developments:
 
-* Some protection around who can regiter and unregister worlds. Maybe adding the worlds class hashes to the interface and checking the caller class chash matches it.
-* This is a simple system, but maybe over-complicated. Since discoverable worlds are white-listed, they could have their world address hard-coded.
+* Some protection around who can register and unregister worlds. Adding the worlds class hashes to the interface and checking the caller class hash matches it.
+* This is a simple system but may be over-complicated. Since discoverable worlds are white-listed, they could have their world address hard-coded.
 
+
+![Planetary System](images/graph.png)
 
 ## 🪐 Planetary integration
 
@@ -117,7 +119,6 @@ mod salute {
     #[abi(embed_v0)]
     impl IVulcanImpl of IVulcan<ContractState> {
         fn live_long(world: @IWorldDispatcher) -> felt252 {
-            WORLD(world);
             ('and_prosper')
         }
     }
