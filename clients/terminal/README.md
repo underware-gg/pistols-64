@@ -97,7 +97,10 @@ cd clients/terminal/src
 python ./duel.py
 ```
 
-Just render some duel...
+![Shoggoth's Deli](../../images/terminal_duel.png)
+
+
+To just render random duels...
 
 ```sh
 cd clients/terminal/src
@@ -107,7 +110,7 @@ python duel_renderer.py Ringo George 'Hallelujah my a**!' 9 10 10 1 Ringo
 Play some test animations...
 
 ```sh
-cd clients/terminal
+cd clients/terminal/src
 python ./anim/tavern.py
 python ./anim/walk.py
 python ./anim/flip.py
@@ -119,7 +122,7 @@ python ./anim/death.py
 
 ![Shoggoth's Deli](../../images/deli.png)
 
-This demostrates the full circle.
+The Planetary full circle...
 
 1. Send commands from `sozo` to the `pistols64` contract
 2. `pistols64` finds `TheOrugginTrail` interface from `Planetary`
@@ -136,4 +139,6 @@ This needs planetary, pistols64 and TheOrugginTrail [deployed](/README.md).
 cd clients/terminal/src
 python ./deli.py
 ```
+
+![Shoggoth's Deli](../../images/terminal_deli.png)
 
