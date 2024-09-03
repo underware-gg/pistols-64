@@ -51,11 +51,11 @@ impl PacesCardImpl of PacesCardTrait {
     }
     fn shoot(self: PacesCard, ref rng: Rng, ref shot_self: Shot, ref shot_other: Shot, salt: felt252) -> bool {
         shot_self.dice_crit = rng.throw_dice(salt, 100);
-// println!("dice {} seed {}", shot_self.dice_crit, seed);
         if (shot_other.card_dodge != self) {
             let damage: u8 = if (shot_self.dice_crit <= shot_self.final_chances) {shot_self.final_damage} else {0};
             shot_other.final_health = MathU8::sub(shot_other.initial_health, damage);
         }
+// println!("dice {} / {} h/d: {} / {}", shot_self.dice_crit, shot_self.final_chances, shot_other.final_health, shot_self.final_damage);
         (shot_other.final_health == 0)
     }
 }

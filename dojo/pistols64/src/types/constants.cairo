@@ -9,6 +9,6 @@ mod CONST {
     const SINGLE_DAMAGE: u8 = 1;
 
     // crit chances
-    const INITIAL_CHANCE: u8 = 50;
+    const INITIAL_CHANCE: u8 = 80;
     const INITIAL_DAMAGE: u8 = 3;
 }
