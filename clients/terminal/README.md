@@ -79,7 +79,7 @@ python --version
 ¯\_(ツ)_/¯
 ```
 
-### Run the client
+### Run a duel from terminal client
 
 Configure sozo for localhost Katana, or another chain:
 
@@ -97,27 +97,48 @@ cd clients/terminal/src
 python ./duel.py
 ```
 
-Start story mode with **TheOrugginTrail** contract (needs planetary, pistols64 and TheOrugginTrail [deployed](/README.md))
+![Shoggoth's Deli](../../images/terminal_duel.png)
 
-```sh
-cd clients/terminal/src
-python ./shoggoth.py
-```
 
-Just render some duel...
+To just render random duels...
 
 ```sh
 cd clients/terminal/src
 python duel_renderer.py Ringo George 'Hallelujah my a**!' 9 10 10 1 Ringo
 ```
 
-Or play some test animations...
+Play some test animations...
 
 ```sh
-cd clients/terminal
+cd clients/terminal/src
 python ./anim/tavern.py
 python ./anim/walk.py
 python ./anim/flip.py
 python ./anim/dance.py
 python ./anim/death.py
 ```
+
+## Shoggoth's Deli
+
+![Shoggoth's Deli](../../images/deli.png)
+
+The Planetary full circle...
+
+1. Send commands from `sozo` to the `pistols64` contract
+2. `pistols64` finds `TheOrugginTrail` interface from `Planetary`
+3. `pistols64` sends the comand to `TheOrugginTrail`, **triggering a new duel**
+4. `TheOrugginTrail` finds `pistols64` interface from `Planetary`
+5. `TheOrugginTrail` creates a new challenge calling the `pistols64` contract
+6. Transaction completes, we get the Duel ID from events in the the receipt.
+7. Call `pistols64` (or Torii) to get the duel results.
+8. Play final animation
+
+This needs planetary, pistols64 and TheOrugginTrail [deployed](/README.md).
+
+```sh
+cd clients/terminal/src
+python ./deli.py
+```
+
+![Shoggoth's Deli](../../images/terminal_deli.png)
+

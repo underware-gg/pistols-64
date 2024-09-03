@@ -1,8 +1,7 @@
 from libs import ascii_lib as ascii
-from libs import utils
 from duel_renderer import render_duel
-import subprocess
-import json
+from libs import utils
+from libs import sozo
 
 frameCount = 0
 
@@ -26,57 +25,6 @@ def tavern():
     print("__|____|____|___________|__")
     print()
 
-#
-# sozo execute --help
-#
-# The calldata to be passed to the system.
-# Comma separated values e.g., 0x12345,128,u256:9999999999.
-# Sozo supports some prefixes that you can use to automatically parse some types.
-# The supported prefixes are:
-# - u256: A 256-bit unsigned integer.
-# - sstr: A cairo short string.
-# - str: A cairo string (ByteArray).
-# - int: A signed integer.
-# - no prefix: A cairo felt or any type that fit into one felt.
-#
-def sozo_execute(function, calldata, readCall=False):
-  try:
-    command = f"sozo execute pistols64-actions {function} --calldata {calldata} --wait --receipt"
-    print("] $", command)
-    print("] executing sozo...")
-    result = subprocess.run(command, shell=True, check=True, capture_output=True, text=True)
-    print("] ok!")
-    # execute output be like:
-    # > Transaction hash: 0x042e421b83aa4b01a9393eacc593d27ea21494eae04422b211dcda6635dbc431
-    # > Receipt:
-    # {
-    # ...
-    # }
-    output_lines = result.stdout.strip().split('\n')[2:]
-    output = '\n'.join(output_lines)
-    return json.loads(output)
-  except subprocess.CalledProcessError as e:
-    print("] ! error executing command: ", command)
-    print("] ! exit code: ", e.returncode)
-    print(e.output)
-    exit()
-  
-def sozo_call(function, calldata):
-  try:
-    command = f"sozo call pistols64-actions {function} --calldata {calldata}"
-    print("] $", command)
-    print("] calling sozo...")
-    result = subprocess.run(command, shell=True, check=True, capture_output=True, text=True)
-    print("] ok!")
-    # call output be like:
-    # [ 0xce6788dee1a083c26cd2a32c69285989 0x3234323335 0x3433343334333232 0x3233343233 0x2 0x2 0x3 0x2 0x5 0x6 0x1 0x0 ]
-    return result.stdout.strip('[]').split()
-  except subprocess.CalledProcessError as e:
-    print("] ! error executing command: ", command)
-    print("] ! exit code: ", e.returncode)
-    print(e.output)
-    exit()
-
 
 #--------------------------------------------------------
 # main execution
@@ -93,23 +41,23 @@ if __name__ == '__main__':
   name_b = input("Offender's name: ")
 
   # create_challenge() and get duel_id from event data
-  result = sozo_execute("create_challenge", f"{utils.str_to_hex(name_a)},{utils.str_to_hex(name_b)},{utils.str_to_hex(message)}")
+  result = sozo.sozo_execute("create_challenge", f"{utils.str_to_hex(name_a)},{utils.str_to_hex(name_b)},{utils.str_to_hex(message)}")
   duel_id = result["events"][0]["data"][2]
 
   # duelist A moves...
   paces_a = input(f"{name_a}'s paces to shoot: ")
   dodge_a = input(f"{name_a}'s paces to dodge: ")
-  sozo_execute("move", f"{duel_id},0x1,sstr:\"{name_a}\",0x2,{paces_a},{dodge_a}")
+  sozo.sozo_execute("move", f"{duel_id},0x1,sstr:\"{name_a}\",0x2,{paces_a},{dodge_a}")
 
   # duelist B moves...
   paces_b = input(f"{name_b}'s paces to shoot: ")
   dodge_b = input(f"{name_b}'s paces to dodge: ")
-  sozo_execute("move", f"{duel_id},0x1,sstr:\"{name_b}\",0x2,{paces_b},{dodge_b}")
+  sozo.sozo_execute("move", f"{duel_id},0x1,sstr:\"{name_b}\",0x2,{paces_b},{dodge_b}")
 
   # get the results
   # ChallengeResults
   # [ 0xce6788dee1a083c26cd2a32c69285989 0x3234323335 0x3433343334333232 0x3233343233 0x2 0x2 0x3 0x2 0x5 0x6 0x1 0x0 ]
-  result = sozo_call("get_challenge_results", f"{duel_id}")
+  result = sozo.sozo_call("get_challenge_results", f"{duel_id}")
   result_duel_id = utils.hex_to_number(result[0])
   result_name_a = utils.hex_to_str(result[1])
   result_name_b = utils.hex_to_str(result[2])
